@@ -2,22 +2,50 @@ import React, { useEffect, useRef } from "react";
 import { BrowserMultiFormatReader } from "@zxing/browser";
 
 const BarcodeScanner = () => {
-  const videoRef = useRef(null); // Guarda referencia al <video>
+  const videoRef = useRef(null);
+  const codeReader = useRef(null);
 
   useEffect(() => {
-    const codeReader = new BrowserMultiFormatReader(); // Crea lector de códigos
+    const startScanner = async () => {
+      try {
+        const devices = await BrowserMultiFormatReader.listVideoInputDevices();
+        console.log("Cámaras disponibles:", devices);
 
-    // Inicia la cámara y escanea en vivo
-    codeReader.decodeFromVideoDevice(null, videoRef.current, (result) => {
-      if (result) {
-        console.log("Código detectado:", result.getText());
-        // En el futuro podrías guardar el resultado o enviarlo a otro lado
+        if (!devices.length) {
+          console.error("No hay cámaras disponibles.");
+          return;
+        }
+
+        const selectedDeviceId =
+  devices.find((device) => device.label.toLowerCase().includes("back"))?.deviceId ||
+  devices[1]?.deviceId ||
+  devices[0]?.deviceId;
+
+        codeReader.current = new BrowserMultiFormatReader();
+
+        codeReader.current.decodeFromVideoDevice(
+          selectedDeviceId,
+          videoRef.current,
+          (result, err) => {
+            if (result) {
+              console.log("Código detectado:", result.getText());
+            }
+            if (err && !(err instanceof DOMException)) {
+              console.error("Error escaneando:", err);
+            }
+          }
+        );
+      } catch (err) {
+        console.error("Error al iniciar escáner:", err);
       }
-    });
+    };
 
-    // Limpia al salir del componente (detiene cámara)
+    startScanner();
+
     return () => {
-      codeReader.reset();
+      if (codeReader.current) {
+        codeReader.current.reset();
+      }
     };
   }, []);
 
@@ -25,14 +53,13 @@ const BarcodeScanner = () => {
     <div>
       <video
         ref={videoRef}
-        style={{ width: "100%" }}
+        style={{ width: "100%", border: "2px solid gray" }}
         muted
         playsInline
+        autoPlay
       />
     </div>
   );
 };
 
 export default BarcodeScanner;
-
-
