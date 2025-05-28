@@ -1,10 +1,11 @@
 import React from "react";
 import BarcodeScanner from "../components/BarcodeScanner";
+import "../styles/ScanPage.css";
 
 const ScanPage = () => {
   return (
-    <div>
-      <h1>Escanear producto</h1>
+    <div className="scan-container">
+      <h1>Escanear Producto</h1>
       <BarcodeScanner />
     </div>
   );

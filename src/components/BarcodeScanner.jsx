@@ -1,9 +1,10 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { BrowserMultiFormatReader } from "@zxing/browser";
 
 const BarcodeScanner = () => {
   const videoRef = useRef(null);
   const codeReader = useRef(null);
+  const [code, setCode] = useState("");
 
   useEffect(() => {
     const startScanner = async () => {
@@ -16,10 +17,11 @@ const BarcodeScanner = () => {
           return;
         }
 
+        // Elegir cámara trasera si existe
         const selectedDeviceId =
-  devices.find((device) => device.label.toLowerCase().includes("back"))?.deviceId ||
-  devices[1]?.deviceId ||
-  devices[0]?.deviceId;
+          devices.find((device) =>
+            device.label.toLowerCase().includes("back")
+          )?.deviceId || devices[1]?.deviceId || devices[0]?.deviceId;
 
         codeReader.current = new BrowserMultiFormatReader();
 
@@ -28,9 +30,13 @@ const BarcodeScanner = () => {
           videoRef.current,
           (result, err) => {
             if (result) {
-              console.log("Código detectado:", result.getText());
+              const text = result.getText();
+              setCode(text); // Mostrar en pantalla
+              console.log("Código detectado:", text);
             }
-            if (err && !(err instanceof DOMException)) {
+
+            // Ignorar errores normales cuando no detecta código
+            if (err && err.name !== "NotFoundException") {
               console.error("Error escaneando:", err);
             }
           }
@@ -42,6 +48,7 @@ const BarcodeScanner = () => {
 
     startScanner();
 
+    // Limpiar al salir
     return () => {
       if (codeReader.current) {
         codeReader.current.reset();
@@ -53,11 +60,24 @@ const BarcodeScanner = () => {
     <div>
       <video
         ref={videoRef}
-        style={{ width: "100%", border: "2px solid gray" }}
+        style={{ width: "100%", border: "2px solid gray", borderRadius: "12px" }}
         muted
         playsInline
         autoPlay
       />
+      {code && (
+        <p
+          style={{
+            marginTop: "16px",
+            color: "green",
+            textAlign: "center",
+            fontWeight: "bold",
+            fontSize: "18px",
+          }}
+        >
+          Código detectado: {code}
+        </p>
+      )}
     </div>
   );
 };
