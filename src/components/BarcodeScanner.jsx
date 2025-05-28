@@ -5,19 +5,17 @@ const BarcodeScanner = () => {
   const videoRef = useRef(null);
   const codeReader = useRef(null);
   const [code, setCode] = useState("");
+  const [isScanning, setIsScanning] = useState(true); 
 
   useEffect(() => {
     const startScanner = async () => {
       try {
         const devices = await BrowserMultiFormatReader.listVideoInputDevices();
-        console.log("Cámaras disponibles:", devices);
-
         if (!devices.length) {
           console.error("No hay cámaras disponibles.");
           return;
         }
 
-        // Elegir cámara trasera si existe
         const selectedDeviceId =
           devices.find((device) =>
             device.label.toLowerCase().includes("back")
@@ -25,22 +23,20 @@ const BarcodeScanner = () => {
 
         codeReader.current = new BrowserMultiFormatReader();
 
-        codeReader.current.decodeFromVideoDevice(
-          selectedDeviceId,
-          videoRef.current,
-          (result, err) => {
-            if (result) {
-              const text = result.getText();
-              setCode(text); // Mostrar en pantalla
-              console.log("Código detectado:", text);
+        if (isScanning) {
+          codeReader.current.decodeFromVideoDevice(
+            selectedDeviceId,
+            videoRef.current,
+            (result) => {
+              if (result) {
+                const text = result.getText();
+                setCode(text);
+                setIsScanning(false); // 🔒 detener escaneo hasta nuevo click
+                console.log("Código detectado:", text);
+              }
             }
-
-            // Ignorar errores normales cuando no detecta código
-            if (err && err.name !== "NotFoundException") {
-              console.error("Error escaneando:", err);
-            }
-          }
-        );
+          );
+        }
       } catch (err) {
         console.error("Error al iniciar escáner:", err);
       }
@@ -48,13 +44,17 @@ const BarcodeScanner = () => {
 
     startScanner();
 
-    // Limpiar al salir
     return () => {
-      if (codeReader.current) {
+      if (codeReader.current && typeof codeReader.current.reset === "function") {
         codeReader.current.reset();
       }
     };
-  }, []);
+  }, [isScanning]);
+
+  const manejarNuevoEscaneo = () => {
+    setCode("");          // limpiar código mostrado
+    setIsScanning(true);  
+  };
 
   return (
     <div>
@@ -65,18 +65,37 @@ const BarcodeScanner = () => {
         playsInline
         autoPlay
       />
+
       {code && (
-        <p
-          style={{
-            marginTop: "16px",
-            color: "green",
-            textAlign: "center",
-            fontWeight: "bold",
-            fontSize: "18px",
-          }}
-        >
-          Código detectado: {code}
-        </p>
+        <>
+          <p
+            style={{
+              marginTop: "16px",
+              color: "green",
+              textAlign: "center",
+              fontWeight: "bold",
+              fontSize: "18px",
+            }}
+          >
+            Código detectado: {code}
+          </p>
+          <div style={{ display: "flex", justifyContent: "center", marginTop: "12px" }}>
+            <button
+              onClick={manejarNuevoEscaneo}
+              style={{
+                padding: "10px 16px",
+                borderRadius: "8px",
+                backgroundColor: "#007bff",
+                color: "white",
+                border: "none",
+                fontWeight: "bold",
+                cursor: "pointer"
+              }}
+            >
+              Escanear otro
+            </button>
+          </div>
+        </>
       )}
     </div>
   );
