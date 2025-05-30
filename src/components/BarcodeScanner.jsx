@@ -5,7 +5,7 @@ const BarcodeScanner = () => {
   const videoRef = useRef(null);
   const codeReader = useRef(null);
   const [code, setCode] = useState("");
-  const [isScanning, setIsScanning] = useState(true); 
+  const [isScanning, setIsScanning] = useState(true);
 
   useEffect(() => {
     const startScanner = async () => {
@@ -31,8 +31,23 @@ const BarcodeScanner = () => {
               if (result) {
                 const text = result.getText();
                 setCode(text);
-                setIsScanning(false); // 🔒 detener escaneo hasta nuevo click
+                setIsScanning(false);
                 console.log("Código detectado:", text);
+
+                // CONSULTA BACKEND
+                fetch(`https://etiketa-backend.onrender.com/buscar-producto/${text}`)
+                  .then((res) => {
+                    if (!res.ok) {
+                      throw new Error(`Producto no encontrado: ${res.status}`);
+                    }
+                    return res.json();
+                  })
+                  .then((data) => {
+                    console.log("Producto desde backend:", data);
+                  })
+                  .catch((err) => {
+                    console.error("Error al conectar con backend:", err);
+                  });
               }
             }
           );
@@ -52,8 +67,8 @@ const BarcodeScanner = () => {
   }, [isScanning]);
 
   const manejarNuevoEscaneo = () => {
-    setCode("");          // limpiar código mostrado
-    setIsScanning(true);  
+    setCode("");
+    setIsScanning(true);
   };
 
   return (
