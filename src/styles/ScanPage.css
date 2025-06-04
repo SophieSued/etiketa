@@ -1,30 +1,51 @@
-/* Estilos generales del contenedor */
+.mobile-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #1e1e1e;
+
+  max-width: 430px;
+  width: 100%;
+  margin: 0 auto;
+  height: 100vh; /* CAMBIA min-height por height */
+  position: relative;
+}
+
+
 .scan-container {
-    max-width: 480px;
-    margin: 0 auto;
-    padding: 16px;
-    background-color: #f7f7f7;
-    min-height: 100vh; /* altura mínima para ocupar toda la pantalla */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-sizing: border-box;
-  }
+  width: 100%;
+  padding: 16px;
+  background-color: #f7f7f7;
+  flex: 1; /* Esto le dice: ocupá todo el espacio disponible */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  overflow-y: auto; /* por si el contenido es largo */
   
-  /* Estilo del título */
-  .scan-container h1 {
-    font-size: 24px;
-    margin-top: 20px;
-    margin-bottom: 24px;
-    text-align: center;
-    color: #333;
-  }
-  
-  /* Estilo del video */
-  .scan-container video {
-    width: 100%;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    background-color: black; /* por si tarda en cargar el video */
-  }
-  
+}
+
+/* Estilo del título */
+.scan-container h1 {
+  font-size: 1.5rem;
+  margin-top: 1.25rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: #333;
+}
+
+/* Estilo del video */
+.scan-container video {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background-color: black;
+}
+
+/* Texto debajo del escáner */
+.texto-ayuda {
+  font-size: 14px;
+  color: #666;
+  margin-top: 1rem;
+  text-align: center;
+}

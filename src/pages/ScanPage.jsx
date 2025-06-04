@@ -7,16 +7,19 @@ import "../styles/ScanPage.css";
 
 const ScanPage = () => {
   return (
-    <div className="scan-container">
-      <TituloProyecto />
+    <div className="mobile-wrapper"> 
+      <div className="scan-container">
+        <TituloProyecto />
 
-      <div className="scanner-box">
-        <BarcodeScanner />
-        <p className="texto-ayuda">Apunta al código de barra con la cámara</p>
+        <div className="scanner-box">
+          <BarcodeScanner />
+          <p className="texto-ayuda">Apunta al código de barra con la cámara</p>
+        </div>
+
+        <BotonesEscaneo />
       </div>
 
-      <BotonesEscaneo />
-      <BarraFooter />
+        <BarraFooter />
     </div>
   );
 };
