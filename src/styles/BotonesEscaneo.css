@@ -1,0 +1,17 @@
+.boton-icono {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    color: black;
+  }
+  .botones-escaneo {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* alineación vertical */
+    gap: 20px; /* ajustá este valor según quieras */
+  }
+  
+  .boton-icono:focus {
+    outline: none;
+  }
+  
