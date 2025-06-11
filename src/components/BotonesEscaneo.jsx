@@ -12,7 +12,7 @@ const BotonesEscaneo = () => {
         <CiImageOn size={50} />
       </button>
       <button className="boton-icono">
-        <PiRadioButtonThin size={90} />
+        <PiRadioButtonThin size={80} />
       </button>
       <button className="boton-icono">
         <IoFlashOutline size={50} />

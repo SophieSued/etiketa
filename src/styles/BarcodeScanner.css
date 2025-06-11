@@ -1,0 +1,78 @@
+.scanner-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    width: fit-content;
+    margin: auto;
+  }
+  
+  .qr-video {
+    width: 250px;
+    height: 250px;
+    border-radius: 12px;
+    object-fit: cover;
+    z-index: 1;
+  }
+  
+  .corner {
+    width: 25px;
+    height: 25px;
+    border: 3px solid black;
+    position: absolute;
+    z-index: 2;
+  }
+  
+  .top-left {
+    top: 0;
+    left: 0;
+    border-right: none;
+    border-bottom: none;
+  }
+  
+  .top-right {
+    top: 0;
+    right: 0;
+    border-left: none;
+    border-bottom: none;
+  }
+  
+  .bottom-left {
+    bottom: 0;
+    left: 0;
+    border-right: none;
+    border-top: none;
+  }
+  
+  .bottom-right {
+    bottom: 0;
+    right: 0;
+    border-left: none;
+    border-top: none;
+  }
+  
+  .codigo-detectado {
+    margin-top: 16px;
+    color: green;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+  }
+  
+  .boton-reiniciar {
+    display: flex;
+    justify-content: center;
+    margin-top: 12px;
+  }
+  
+  .boton-reiniciar button {
+    padding: 10px 16px;
+    border-radius: 8px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  

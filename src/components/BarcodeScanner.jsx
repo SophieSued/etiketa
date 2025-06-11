@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { BrowserMultiFormatReader } from "@zxing/browser";
+import "../styles/BarcodeScanner.css";
 
 const BarcodeScanner = () => {
   const videoRef = useRef(null);
@@ -34,7 +35,6 @@ const BarcodeScanner = () => {
                 setIsScanning(false);
                 console.log("Código detectado:", text);
 
-                // CONSULTA BACKEND
                 fetch(`https://etiketa-backend.onrender.com/buscar-producto/${text}`)
                   .then((res) => {
                     if (!res.ok) {
@@ -72,43 +72,28 @@ const BarcodeScanner = () => {
   };
 
   return (
-    <div>
+    <div className="scanner-container">
+      
+      <div className="corner top-left"></div>
+      <div className="corner top-right"></div>
+      <div className="corner bottom-left"></div>
+      <div className="corner bottom-right"></div>
+
+     
       <video
         ref={videoRef}
-        style={{ width: "100%", border: "2px solid gray", borderRadius: "12px" }}
+        className="qr-video"
         muted
         playsInline
         autoPlay
       />
 
+      
       {code && (
         <>
-          <p
-            style={{
-              marginTop: "16px",
-              color: "green",
-              textAlign: "center",
-              fontWeight: "bold",
-              fontSize: "18px",
-            }}
-          >
-            Código detectado: {code}
-          </p>
-          <div style={{ display: "flex", justifyContent: "center", marginTop: "12px" }}>
-            <button
-              onClick={manejarNuevoEscaneo}
-              style={{
-                padding: "10px 16px",
-                borderRadius: "8px",
-                backgroundColor: "#007bff",
-                color: "white",
-                border: "none",
-                fontWeight: "bold",
-                cursor: "pointer"
-              }}
-            >
-              Escanear otro
-            </button>
+          <p className="codigo-detectado">Código detectado: {code}</p>
+          <div className="boton-reiniciar">
+            <button onClick={manejarNuevoEscaneo}>Escanear otro</button>
           </div>
         </>
       )}
