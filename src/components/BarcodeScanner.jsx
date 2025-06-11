@@ -35,7 +35,7 @@ const BarcodeScanner = () => {
                 setIsScanning(false);
                 console.log("Código detectado:", text);
 
-                fetch(`https://etiketa-backend.onrender.com/buscar-producto/${text}`)
+                fetch(`https://etiketa-backend.onrender.com/productos/buscar-producto/${text}`)
                   .then((res) => {
                     if (!res.ok) {
                       throw new Error(`Producto no encontrado: ${res.status}`);

@@ -76,3 +76,17 @@
     cursor: pointer;
   }
   
+  .top-left {
+    transform: translate(7px, 7px);
+  }
+  .top-right {
+    transform: translate(-7px, 7px);
+  }
+  .bottom-left {
+    transform: translate(7px, -7px);
+  }
+  .bottom-right {
+    transform: translate(-7px, -7px);
+  }
+  
+  
