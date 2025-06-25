@@ -60,5 +60,41 @@
     width: 100%;
     z-index: 10;
   }
+
+  .botones-analisis {
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0;
+    gap: 1rem;
+  }
+  
+  .botones-analisis button {
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    border-radius: 12px;
+    border: 1px solid black;
+    background-color: white;
+    cursor: pointer;
+  }
+  
+  .botones-analisis button.activo {
+    background-color: black;
+    color: white;
+  }
+  
+  .alternativa-recomendada {
+    background-color: white;
+    border-radius: 16px;
+    padding: 1.2rem;
+    margin: 1rem 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+  
+  .alternativa-recomendada h2 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+  }
+  
   
   
