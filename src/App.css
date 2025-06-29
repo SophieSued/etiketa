@@ -1,7 +1,7 @@
 html, body {
   margin: 0;
   padding: 0;
-  background-color: #1e1e1e; /* el gris oscuro que se ve en tu captura */
+  background-color: #1e1e1e; 
   display: flex;
   justify-content: center;
 }

@@ -1,31 +1,16 @@
-.mobile-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #1e1e1e;
-
-  max-width: 430px;
-  width: 100%;
-  margin: 0 auto;
-  height: 100vh; /* CAMBIA min-height por height */
-  position: relative;
-}
-
-
 .scan-container {
+  flex: 1;
   width: 100%;
   padding: 16px;
-  background-color: #f7f7f7;
-  flex: 1; /* Esto le dice: ocupá todo el espacio disponible */
+  background-color: white;
+  flex: 1; 
   display: flex;
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
-  overflow-y: auto; /* por si el contenido es largo */
-  
+  overflow-y: auto; 
 }
 
-/* Estilo del título */
 .scan-container h1 {
   font-size: 1.5rem;
   margin-top: 1.25rem;
@@ -34,7 +19,6 @@
   color: #333;
 }
 
-/* Estilo del video */
 .scan-container video {
   width: 100%;
   border-radius: 12px;
@@ -42,7 +26,6 @@
   background-color: black;
 }
 
-/* Texto debajo del escáner */
 .texto-ayuda {
   font-size: 14px;
   color: #666;

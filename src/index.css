@@ -66,3 +66,13 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.mobile-wrapper {
+  max-width: 430px;
+  width: 100%;
+  margin: 0 auto;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}

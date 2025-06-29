@@ -19,10 +19,11 @@ const ScanPage = () => {
         <BotonesEscaneo />
       </div>
 
-        <BarraFooter />
+      <BarraFooter />
     </div>
   );
 };
 
 export default ScanPage;
+
 

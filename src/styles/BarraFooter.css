@@ -1,10 +1,16 @@
 .barra-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
   width: 100%;
+  max-width: 430px;
   background-color: #1a1a1a;
   padding: 0.7rem 0;
-  max-width: 430px;
+  z-index: 100;
+  box-sizing: border-box;
 }
 
+/* NAV dentro del footer */
 .barra-footer nav ul {
   display: flex;
   justify-content: space-around;
@@ -16,10 +22,9 @@
 
 .barra-footer nav li {
   display: flex;
-  flex-direction: column; /* 👈 esta línea es CLAVE */
+  flex-direction: column;
   align-items: center;
   font-size: 0.75rem;
-  color: white; /* o el color que estés usando */
-  gap: 4px; /* espacio entre ícono y texto */
+  color: white;
+  gap: 4px;
 }
-
