@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: transparent;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -24,11 +24,15 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
+  padding: 0;
   min-width: 320px;
   min-height: 100vh;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; 
 }
+
 
 h1 {
   font-size: 3.2em;
@@ -54,25 +58,18 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 .mobile-wrapper {
-  max-width: 430px;
   width: 100%;
+  max-width: 430px;
   margin: 0 auto;
-  height: 100vh;
+  background-image: url('/imagen-etiketa.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh; 
   display: flex;
   flex-direction: column;
-  background-color: white;
+  justify-content: flex-start; 
 }
+
+

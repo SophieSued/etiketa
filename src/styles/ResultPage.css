@@ -1,14 +1,13 @@
 .result-page {
-  width: 100%;
   padding: 16px;
-  background-color: white;
+  background-color: transparent; 
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
   overflow-y: auto;
-  padding-bottom: 120px; /* espacio para footer fijo */
+  padding-bottom: 120px;
   color: black;
   font-family: sans-serif;
 }
@@ -33,13 +32,13 @@
   font-size: 1.2rem;
   margin: 0.3rem 0;
   font-weight: 600;
-  color: black; 
+  color: white; 
   text-align: center;
 }
 
 .encabezado-producto p {
   font-size: 0.95rem;
-  color: black; 
+  color: white; 
   margin: 0;
 }
 
@@ -66,7 +65,7 @@
 }
 
 .grafico-componente {
-  border: 1px solid black;
+  border: 1px solid white;
   border-radius: 15px;
   padding: 1rem;
   margin-bottom: 1.5rem;
@@ -90,13 +89,13 @@
 .donut-chart svg {
   width: 120px;
   height: 120px;
-  transform: rotate(-90deg); /* para que arranque arriba */
+  transform: rotate(-90deg); 
 }
 
 .donut-chart text {
   font-size: 1rem;
   font-weight: bold;
-  fill: black;
+  fill: white;
   text-anchor: middle;
   dominant-baseline: middle;
   transform: rotate(90deg);
@@ -133,16 +132,16 @@
 
 
 .lista-componentes {
-  border: 1px solid black;
+  border: 1px solid white;
   border-radius: 10px;
   padding: 1rem;
   margin-bottom: 1rem;
-  color: black; 
+  color: white; 
 }
 
 .lista-componentes h3 {
   margin-bottom: 0.5rem;
-  color: black;
+  color: white;
 }
 
 .lista-componentes ul {
@@ -199,7 +198,7 @@
   font-weight: bold;
   margin: 1rem 0;
   box-sizing: border-box;
-  color: black; /* ✅ texto en negro */
+  color: black; 
 }
 
 .info-clasificar {
@@ -211,7 +210,7 @@
   align-items: center;
   font-size: 0.9rem;
   cursor: pointer;
-  color: black; /* ✅ texto en negro */
+  color: black; 
 }
 
 .alternativa-recomendada {
@@ -219,7 +218,7 @@
   padding: 1rem;
   border-radius: 10px;
   text-align: center;
-  color: black; /* ✅ texto en negro */
+  color: black; 
 }
 
 .barra-footer {

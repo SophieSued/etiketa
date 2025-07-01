@@ -1,19 +1,23 @@
 .barra-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
   width: 100%;
-  max-width: 430px;
-  background-color: #1a1a1a;
-  padding: 0.7rem 0;
-  z-index: 100;
+  max-width: 375px;
+  margin: 0 auto;
+  padding: 0.5rem 1rem;
+  background-color: transparent !important;  
   box-sizing: border-box;
+  position: relative !important;
 }
 
-/* NAV dentro del footer */
+.barra-footer nav {
+  background-color: #007ba7;
+  border: 2px solid white;
+  border-radius: 20px;
+  padding: 0.4rem 0.6rem;
+}
+
 .barra-footer nav ul {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   list-style: none;
   margin: 0;
@@ -24,7 +28,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   color: white;
   gap: 4px;
+  flex: 1;
 }
+
+
