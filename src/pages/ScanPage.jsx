@@ -2,7 +2,7 @@ import React from "react";
 import TituloProyecto from "../components/TituloProyecto";
 import BarcodeScanner from "../components/BarcodeScanner";
 import BotonesEscaneo from "../components/BotonesEscaneo";
-import BarraFooter from "../components/BarraFooter";
+import BarraFooterScan from "../components/BarraFooterScan";
 import "../styles/ScanPage.css";
 
 const ScanPage = () => {
@@ -19,7 +19,7 @@ const ScanPage = () => {
     <BotonesEscaneo />
   </div>
 
-    <BarraFooter />
+    <BarraFooterScan />
 </div>
 
   );

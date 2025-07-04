@@ -67,11 +67,12 @@ const ResultPage = () => {
               <p><strong>{producto.recomendacion || "Agua saborizada sin azúcar"}</strong></p>
             </div>
           )}
-             <BarraFooter />
         </div>
-      </div>
-    </div>
-  );
+        </div>
+
+      <BarraFooter /> {}
+</div>
+);
 };
 
 export default ResultPage;

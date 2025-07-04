@@ -2,17 +2,17 @@
   width: 100%;
   padding: 16px;
   background-size: cover;
-  background-color: transparent; 
+  background-color: transparent;
   background-position: center;
   background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
-  height: auto;       
-  flex-grow: 0;       
-  overflow: hidden;   
+  flex: 1;              
+  overflow-y: auto;     
 }
+
 
 .scan-container h1 {
   font-size: 1.5rem;

@@ -1,22 +1,41 @@
+.mobile-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
 .result-page {
-  padding: 16px;
-  background-color: transparent; 
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  box-sizing: border-box;
   overflow-y: auto;
-  padding-bottom: 120px;
+  padding: 16px;
+  padding-bottom: 100px; 
+  box-sizing: border-box;
+  background-color: transparent;
   color: black;
   font-family: sans-serif;
+}
+
+.barra-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  max-width: 430px; 
+  background-color: #111;
+  z-index: 10;
+  padding: 0.7rem 0;
+  box-sizing: border-box;
 }
 
 .encabezado-producto {
   text-align: center;
   margin-top: 1rem;
   margin-bottom: 1rem;
-  color: black; 
+  color: black;
 }
 
 .imagen-producto {
@@ -28,18 +47,11 @@
   margin-bottom: 0.5rem;
 }
 
-.encabezado-producto h2 {
-  font-size: 1.2rem;
-  margin: 0.3rem 0;
-  font-weight: 600;
-  color: white; 
-  text-align: center;
-}
-
+.encabezado-producto h2,
 .encabezado-producto p {
-  font-size: 0.95rem;
-  color: white; 
-  margin: 0;
+  color: white;
+  text-align: center;
+  margin: 0.3rem 0;
 }
 
 .botones-analisis {
@@ -65,35 +77,36 @@
 }
 
 .grafico-componente {
-  border: 1px solid white;
+  border: 2px solid white;
   border-radius: 15px;
   padding: 1rem;
   margin-bottom: 1.5rem;
   text-align: center;
+  color: white;
+  background-color: transparent;
 }
 
 .grafico-componente h3 {
   font-size: 1rem;
   font-weight: 600;
   margin-bottom: 1rem;
-  text-align: left;
 }
 
 .donut-chart {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
+  background-color: transparent;
 }
 
 .donut-chart svg {
   width: 120px;
   height: 120px;
-  transform: rotate(-90deg); 
+  transform: rotate(-90deg);
 }
 
 .donut-chart text {
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-weight: bold;
   fill: white;
   text-anchor: middle;
@@ -103,29 +116,29 @@
 
 .segmento {
   fill: none;
-  stroke-width: 30;
+  stroke-width: 4;
 }
 
 .uno {
-  stroke: #e0e0e0;
+  stroke: limegreen;
   stroke-dasharray: 25 75;
   stroke-dashoffset: 0;
 }
 
 .dos {
-  stroke: #b0b0b0;
+  stroke: gold;
   stroke-dasharray: 20 80;
   stroke-dashoffset: -25;
 }
 
 .tres {
-  stroke: #707070;
+  stroke: orange;
   stroke-dasharray: 30 70;
   stroke-dashoffset: -45;
 }
 
 .cuatro {
-  stroke: #202020;
+  stroke: red;
   stroke-dasharray: 25 75;
   stroke-dashoffset: -75;
 }
@@ -136,18 +149,7 @@
   border-radius: 10px;
   padding: 1rem;
   margin-bottom: 1rem;
-  color: white; 
-}
-
-.lista-componentes h3 {
-  margin-bottom: 0.5rem;
   color: white;
-}
-
-.lista-componentes ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
 }
 
 .lista-componentes li {
@@ -157,37 +159,26 @@
   padding: 0.4rem 0;
   font-size: 0.95rem;
   border-bottom: 1px solid #eee;
-  color: black; 
-}
-
-.lista-componentes li span {
-  display: flex;
-  gap: 0.3rem;
-  align-items: center;
   color: black;
 }
 
+.lista-componentes li span,
 .etiqueta-riesgo {
-  font-size: 0.8rem;
   display: flex;
   align-items: center;
-  gap: 0.2rem;
+  gap: 0.3rem;
+  font-size: 0.8rem;
   color: black;
 }
 
-.punto-rojo {
+.punto-rojo, .punto-amarillo {
   width: 10px;
   height: 10px;
-  background-color: red;
   border-radius: 50%;
 }
 
-.punto-amarillo {
-  width: 10px;
-  height: 10px;
-  background-color: gold;
-  border-radius: 50%;
-}
+.punto-rojo { background-color: red; }
+.punto-amarillo { background-color: gold; }
 
 .boton-vermas {
   width: 100%;
@@ -198,19 +189,28 @@
   font-weight: bold;
   margin: 1rem 0;
   box-sizing: border-box;
-  color: black; 
+  color: black;
 }
 
 .info-clasificar {
-  border: 1px solid black;
-  border-radius: 10px;
-  padding: 0.7rem 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 0.9rem;
-  cursor: pointer;
-  color: black; 
+  background-color: #00c2ff;
+  border: 2px solid white;
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  color: white;
+  font-weight: 500;
+  font-size: 0.95rem;
+  margin-top: 1.5rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.info-clasificar .flecha {
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 .alternativa-recomendada {
@@ -218,38 +218,6 @@
   padding: 1rem;
   border-radius: 10px;
   text-align: center;
-  color: black; 
+  color: black;
 }
 
-.barra-footer {
-  margin-top: auto;
-}
-
-.result-page {
-  position: relative;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-.contenido-scroll {
-  flex: 1;
-  overflow-y: scroll;
-  scrollbar-width: none; 
-  -ms-overflow-style: none; 
-}
-
-.contenido-scroll::-webkit-scrollbar {
-  display: none; 
-}
-
-.barra-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  max-width: 430px;
-  background-color: #111;
-  z-index: 10;
-}
