@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/TituloProyecto.css"; // Opcional si querés usar CSS separado
+import "../styles/TituloProyecto.css"; 
 
 const TituloProyecto = () => {
   return (

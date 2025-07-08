@@ -1,9 +1,10 @@
 import React from "react";
 import "../styles/BarraFooter.css";
-import { IoIosSettings } from "react-icons/io";     
-import { MdOutlineCompareArrows, MdQrCodeScanner } from "react-icons/md";        
-import { AiFillHome } from "react-icons/ai";      
-import { FaLayerGroup } from "react-icons/fa6";       
+import { Link } from "react-router-dom";
+import { IoIosSettings } from "react-icons/io";
+import { MdOutlineCompareArrows, MdQrCodeScanner } from "react-icons/md";
+import { AiFillHome } from "react-icons/ai";
+import { FaLayerGroup } from "react-icons/fa6";
 
 const BarraFooter = () => {
   return (
@@ -11,24 +12,34 @@ const BarraFooter = () => {
       <nav>
         <ul>
           <li>
-            <AiFillHome size={22} />
-            <span>Inicio</span>
+            <Link to="/">
+              <AiFillHome size={22} />
+              <span>Inicio</span>
+            </Link>
           </li>
           <li>
-            <MdOutlineCompareArrows size={22} />
-            <span>Comparar</span>
+            <Link to="/comparar">
+              <MdOutlineCompareArrows size={22} />
+              <span>Comparar</span>
+            </Link>
           </li>
           <li>
-            <MdQrCodeScanner size={22} />
-            <span>Escanea</span>
+            <Link to="/scan">
+              <MdQrCodeScanner size={22} />
+              <span>Escanea</span>
+            </Link>
           </li>
           <li>
-            <FaLayerGroup size={22} />
-            <span>Explora</span>
+            <Link to="/explora">
+              <FaLayerGroup size={22} />
+              <span>Explora</span>
+            </Link>
           </li>
           <li>
-            <IoIosSettings size={22} />
-            <span>Ajustes</span>
+            <Link to="/ajustes">
+              <IoIosSettings size={22} />
+              <span>Ajustes</span>
+            </Link>
           </li>
         </ul>
       </nav>

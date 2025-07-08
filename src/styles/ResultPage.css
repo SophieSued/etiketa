@@ -4,6 +4,9 @@
   min-height: 100vh;
   position: relative;
   overflow: hidden;
+  width: 100%;
+  max-width: 430px;
+  margin: 0 auto;
 }
 
 .result-page {
@@ -58,22 +61,144 @@
   display: flex;
   gap: 0.5rem;
   margin-bottom: 1rem;
+  justify-content: center;
 }
 
 .boton-analisis,
 .boton-alternativa {
   flex: 1;
   padding: 0.6rem;
-  font-weight: bold;
-  border: 1px solid black;
-  border-radius: 6px;
-  background: white;
-  color: black;
+  font-weight: 700;
+  font-size: 1rem;
+  text-align: center;
+  border: 2px solid white;
+  border-radius: 999px; 
+  background: rgba(0, 172, 230, 0.4); 
+  color: white;
+  transition: background 0.2s ease;
 }
 
-.boton-activo {
-  background: black;
+.boton-analisis:hover,
+.boton-alternativa:hover {
+  background: rgba(0, 172, 230, 0.6);
+  cursor: pointer;
+}
+
+.activo {
+  background: rgba(0, 172, 230, 1);
+}
+
+.listaproducto-componentes {
+  border: 2px solid white;
+  border-radius: 20px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
   color: white;
+  background-color: rgba(0, 172, 230, 0.3);
+}
+
+.listaproducto-componentes h3 {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: white;
+}
+
+.listaproducto-componentes ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.listaproducto-componentes li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 0;
+  font-size: 1rem;
+  color: white;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.etiqueta-riesgo {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  color: white;
+}
+
+.punto-rojo,
+.punto-naranja,
+.punto-amarillo {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.punto-rojo { background-color: red; }
+.punto-naranja { background-color: orange; }
+.punto-amarillo { background-color: yellow; }
+
+.boton-vermas {
+  width: 100%;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.boton-vermas button {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  background-color: rgba(0, 172, 230, 0.4);
+  border: 2px solid white;
+  color: white;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.boton-vermas button:hover {
+  background-color: rgba(0, 172, 230, 0.6);
+}
+
+.info-clasificar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(0, 172, 230, 0.4); 
+  border: 2px solid white;
+  border-radius: 20px;
+  padding: 1rem;
+  color: white;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-top: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.info-clasificar p {
+  margin: 0;
+  line-height: 1.4;
+  flex: 1;
+  font-size: 1.1rem;
+}
+
+.info-clasificar .flecha {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-left: 1rem;
+}
+
+.alternativa-recomendada {
+  border: 1px dashed gray;
+  padding: 1rem;
+  border-radius: 10px;
+  text-align: center;
+  color: black;
 }
 
 .grafico-componente {
@@ -86,138 +211,19 @@
   background-color: transparent;
 }
 
-.grafico-componente h3 {
+.donut-container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+}
+
+.donut-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-size: 1rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-}
-
-.donut-chart {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: transparent;
-}
-
-.donut-chart svg {
-  width: 120px;
-  height: 120px;
-  transform: rotate(-90deg);
-}
-
-.donut-chart text {
-  font-size: 0.8rem;
   font-weight: bold;
-  fill: white;
-  text-anchor: middle;
-  dominant-baseline: middle;
-  transform: rotate(90deg);
-}
-
-.segmento {
-  fill: none;
-  stroke-width: 4;
-}
-
-.uno {
-  stroke: limegreen;
-  stroke-dasharray: 25 75;
-  stroke-dashoffset: 0;
-}
-
-.dos {
-  stroke: gold;
-  stroke-dasharray: 20 80;
-  stroke-dashoffset: -25;
-}
-
-.tres {
-  stroke: orange;
-  stroke-dasharray: 30 70;
-  stroke-dashoffset: -45;
-}
-
-.cuatro {
-  stroke: red;
-  stroke-dasharray: 25 75;
-  stroke-dashoffset: -75;
-}
-
-
-.lista-componentes {
-  border: 1px solid white;
-  border-radius: 10px;
-  padding: 1rem;
-  margin-bottom: 1rem;
   color: white;
 }
-
-.lista-componentes li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.4rem 0;
-  font-size: 0.95rem;
-  border-bottom: 1px solid #eee;
-  color: black;
-}
-
-.lista-componentes li span,
-.etiqueta-riesgo {
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  font-size: 0.8rem;
-  color: black;
-}
-
-.punto-rojo, .punto-amarillo {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-}
-
-.punto-rojo { background-color: red; }
-.punto-amarillo { background-color: gold; }
-
-.boton-vermas {
-  width: 100%;
-  padding: 0.8rem;
-  background-color: #e0e0e0;
-  border: none;
-  border-radius: 20px;
-  font-weight: bold;
-  margin: 1rem 0;
-  box-sizing: border-box;
-  color: black;
-}
-
-.info-clasificar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #00c2ff;
-  border: 2px solid white;
-  border-radius: 12px;
-  padding: 0.8rem 1rem;
-  color: white;
-  font-weight: 500;
-  font-size: 0.95rem;
-  margin-top: 1.5rem;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.info-clasificar .flecha {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-.alternativa-recomendada {
-  border: 1px dashed gray;
-  padding: 1rem;
-  border-radius: 10px;
-  text-align: center;
-  color: black;
-}
-
