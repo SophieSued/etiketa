@@ -1,0 +1,53 @@
+.pagina-acceso {
+    width: 100%;
+    max-width: 430px;
+    margin: 0 auto;
+    min-height: 100vh;
+    background-color: #e5f6ff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    box-sizing: border-box;
+  }
+  
+  .boton-acceso {
+    width: 100%;
+    max-width: 280px;
+    padding: 0.8rem;
+    margin: 0.5rem 0;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .boton-acceso:hover {
+    background-color: #555;
+  }
+  
+  .pagina-acceso h2 {
+    font-size: 1.8rem;
+    color: #007ba7;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  .mobile-wrapper {
+    width: 100%;
+    max-width: 430px;
+    margin: 0 auto;
+    background-image: url('/imagen-etiketa.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  
