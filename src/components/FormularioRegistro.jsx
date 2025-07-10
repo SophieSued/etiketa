@@ -4,13 +4,11 @@ import "../styles/Formularios.css";
 const FormularioRegistro = ({ onRegistro }) => {
   const [nombre, setNombre] = useState("");
   const [email, setEmail] = useState("");
-  const [contraseña, setContraseña] = useState("");
+  const [password, setPassword] = useState(""); 
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    const datos = { nombre, email, contraseña };
-
+    const datos = { nombre, email, password }; 
     onRegistro?.(datos);
   };
 
@@ -34,8 +32,8 @@ const FormularioRegistro = ({ onRegistro }) => {
       <input
         type="password"
         placeholder="Contraseña"
-        value={contraseña}
-        onChange={(e) => setContraseña(e.target.value)}
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
         required
       />
       <button type="submit">Crear cuenta</button>
@@ -44,3 +42,5 @@ const FormularioRegistro = ({ onRegistro }) => {
 };
 
 export default FormularioRegistro;
+
+

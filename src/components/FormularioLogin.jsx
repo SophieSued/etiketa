@@ -3,16 +3,14 @@ import "../styles/Formularios.css";
 
 const FormularioLogin = ({ onLogin }) => {
   const [email, setEmail] = useState("");
-  const [contraseña, setContraseña] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    const datos = { email, contraseña };
-
+    const datos = { email, password }; 
     onLogin?.(datos);
   };
-
+  
   return (
     <form className="formulario" onSubmit={handleSubmit}>
       <h2>Iniciar sesión</h2>
@@ -26,8 +24,8 @@ const FormularioLogin = ({ onLogin }) => {
       <input
         type="password"
         placeholder="Contraseña"
-        value={contraseña}
-        onChange={(e) => setContraseña(e.target.value)}
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
         required
       />
       <button type="submit">Entrar</button>

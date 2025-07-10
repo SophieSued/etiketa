@@ -13,7 +13,6 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
   padding: 16px;
   padding-bottom: 100px; 
   box-sizing: border-box;
@@ -194,11 +193,58 @@
 }
 
 .alternativa-recomendada {
-  border: 1px dashed gray;
   padding: 1rem;
-  border-radius: 10px;
+  margin-bottom: 2rem;
+  border-radius: 20px;
+  background-color: rgba(0, 172, 230, 0.3);
+  border: 2px solid white;
+  color: white;
   text-align: center;
-  color: black;
+}
+
+.alternativa-recomendada h3 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.alternativa-card {
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 0.8rem;
+  gap: 1rem;
+  border: 1px solid white;
+}
+
+.img-alternativa {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  border-radius: 12px;
+  background-color: white;
+}
+
+.texto-alternativa {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.nombre-alternativa {
+  font-weight: bold;
+  font-size: 1rem;
+  color: white;
+  margin-bottom: 0.4rem;
+}
+
+.seguridad-alternativa {
+  font-size: 0.9rem;
+  background-color: #4CAF50;
+  color: white;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
 }
 
 .grafico-componente {
@@ -226,4 +272,10 @@
   font-size: 1rem;
   font-weight: bold;
   color: white;
+}
+
+.contenido-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 120px; 
 }

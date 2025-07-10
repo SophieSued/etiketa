@@ -5,18 +5,33 @@ import "../styles/Formularios.css";
 const PaginaRegistro = () => {
   const manejarRegistro = async (datos) => {
     try {
-        const respuesta = await fetch("https://etiketa-backend.onrender.com/usuarios/crear-usuario", {
+      console.log("Datos a enviar:", datos); 
+
+      const respuesta = await fetch("https://etiketa-backend.onrender.com/usuarios/crear-usuario", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(datos),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: datos.nombre, 
+          email: datos.email,
+          password: datos.password,
+        }),
       });
 
       const resultado = await respuesta.json();
       console.log("Registro:", resultado);
-      alert("Usuario registrado correctamente");
+
+      if (resultado.token) {
+        localStorage.setItem("token", resultado.token);
+        alert("Registro exitoso");
+        window.location.href = "/login";
+      } else {
+        alert("Error al registrarse: " + (resultado.message || "Intentalo de nuevo"));
+      }
     } catch (error) {
-      console.error("Error en registro:", error);
-      alert("Error al registrarse");
+      console.error("Error en el registro:", error);
+      alert("Error al registrar el usuario");
     }
   };
 
@@ -30,4 +45,5 @@ const PaginaRegistro = () => {
 };
 
 export default PaginaRegistro;
+
 

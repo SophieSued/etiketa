@@ -43,51 +43,62 @@ const ResultPage = () => {
     }
   }, []);
 
-  // "Cargando..."
   if (!producto) {
     return <p style={{ textAlign: "center", padding: "2rem" }}>Cargando producto...</p>;
   }
 
   return (
     <div className="mobile-wrapper">
-  <div className="contenido-scroll">
-    <div className="result-page">
-      <EncabezadoProducto
-        nombre={producto.product_name}
-        marca={producto.brands}
-        imagen={producto.image_url}
-      />
+      <div className="contenido-scroll">
+        <div className="result-page">
+          <EncabezadoProducto
+            nombre={producto.product_name}
+            marca={producto.brands}
+            imagen={producto.image_url}
+          />
 
-      <div className="botones-analisis">
-        <BotonAnalisis
-          activo={seccionActiva === "analisis"}
-          onClick={() => setSeccionActiva("analisis")}
-        />
-        <BotonAlternativa
-          activo={seccionActiva === "alternativa"}
-          onClick={() => setSeccionActiva("alternativa")}
-        />
+          <div className="botones-analisis">
+            <BotonAnalisis
+              activo={seccionActiva === "analisis"}
+              onClick={() => setSeccionActiva("analisis")}
+            />
+            <BotonAlternativa
+              activo={seccionActiva === "alternativa"}
+              onClick={() => setSeccionActiva("alternativa")}
+            />
+          </div>
+
+          {seccionActiva === "analisis" ? (
+            <>
+              <GraficoComponente />
+              <InfoClasificar />
+              <ListaProductoComponentes componentes={componentes} />
+            </>
+          ) : (
+            <div className="alternativa-recomendada">
+              <h3>Recomendación alternativa</h3>
+              <div className="alternativa-card">
+                <img
+                  src={producto.alternativa_img || "bagovit.jpeg"}
+                  alt="Producto alternativo"
+                  className="img-alternativa"
+                />
+                <div className="texto-alternativa">
+                  <p className="nombre-alternativa">
+                    {producto.recomendacion || "Autobronceante Bagovit"}
+                  </p>
+                  <span className="seguridad-alternativa">Seguridad: 97/100</span>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
 
-      {seccionActiva === "analisis" ? (
-        <>
-          <GraficoComponente />
-          <InfoClasificar />
-          <ListaProductoComponentes componentes={componentes} />
-        </>
-      ) : (
-        <div className="alternativa-recomendada">
-          <h2>Recomendación alternativa</h2>
-          <p><strong>{producto.recomendacion || "Agua saborizada sin azúcar"}</strong></p>
-        </div>
-      )}
+      <BarraFooter />
     </div>
-  </div>
-
-  <BarraFooter />
-</div>
-
   );
 };
 
 export default ResultPage;
+

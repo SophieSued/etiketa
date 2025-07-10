@@ -18,7 +18,7 @@ const GraficoComponente = () => {
   };
 
   const options = {
-    cutout: "70%", // hace el efecto donut
+    cutout: "70%", 
     plugins: {
       tooltip: { enabled: false },
     },

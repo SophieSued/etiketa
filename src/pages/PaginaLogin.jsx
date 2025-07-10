@@ -5,10 +5,15 @@ import "../styles/Formularios.css";
 const PaginaLogin = () => {
   const manejarLogin = async (datos) => {
     try {
-        const respuesta = await fetch("https://etiketa-backend.onrender.com/usuarios/login", {
+      const respuesta = await fetch("https://etiketa-backend.onrender.com/usuarios/login", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(datos),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: datos.email,
+          password: datos.password,  
+        }),
       });
 
       const resultado = await respuesta.json();
@@ -36,3 +41,5 @@ const PaginaLogin = () => {
 };
 
 export default PaginaLogin;
+
+
