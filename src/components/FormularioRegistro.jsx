@@ -3,12 +3,13 @@ import "../styles/Formularios.css";
 
 const FormularioRegistro = ({ onRegistro }) => {
   const [nombre, setNombre] = useState("");
+  const [apellido, setApellido] = useState(""); 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState(""); 
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const datos = { nombre, email, password }; 
+    const datos = { nombre, apellido, email, password }; 
     onRegistro?.(datos);
   };
 
@@ -20,6 +21,13 @@ const FormularioRegistro = ({ onRegistro }) => {
         placeholder="Nombre"
         value={nombre}
         onChange={(e) => setNombre(e.target.value)}
+        required
+      />
+      <input
+        type="text"
+        placeholder="Apellido"
+        value={apellido}
+        onChange={(e) => setApellido(e.target.value)}
         required
       />
       <input
@@ -42,5 +50,6 @@ const FormularioRegistro = ({ onRegistro }) => {
 };
 
 export default FormularioRegistro;
+
 
 

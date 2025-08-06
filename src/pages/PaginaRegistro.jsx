@@ -13,7 +13,8 @@ const PaginaRegistro = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name: datos.nombre, 
+          nombre: datos.nombre,     
+          apellido: datos.apellido, 
           email: datos.email,
           password: datos.password,
         }),
@@ -45,5 +46,6 @@ const PaginaRegistro = () => {
 };
 
 export default PaginaRegistro;
+
 
 
