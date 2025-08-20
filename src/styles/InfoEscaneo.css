@@ -1,0 +1,53 @@
+.info-limite {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Antes 12px */
+    padding: 8px; /* Agrega un pequeño margen interior si es necesario */
+  }
+  
+  .bloque-info {
+    background-color: #ffffff;
+    border-radius: 10px; /* Antes 14px */
+    padding: 8px 10px; /* Antes 12px */
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.04); /* Sombra más liviana */
+    font-size: 12px; /* Antes 13px */
+    color: #333;
+  }
+  
+  .bloque-info h3 {
+    color: #00BCD4;
+    font-size: 14px; /* Antes 15px */
+    margin-bottom: 6px; /* Antes 8px */
+    font-weight: 600;
+  }
+  
+  .bloque-info ul {
+    padding-left: 16px; /* Antes 20px */
+    margin: 0;
+  }
+  
+  .bloque-info li {
+    margin-bottom: 4px; /* Antes 6px */
+  }
+  
+  .bloque-info p {
+    margin: 0;
+    line-height: 1.4; /* Antes 1.5 */
+  }
+  
+  .busqueda-label {
+    display: block;
+    margin-bottom: 6px; /* Antes 8px */
+    font-size: 13px;
+  }
+  
+  .busqueda-input {
+    width: 100%;
+    padding: 8px; /* Antes 10px */
+    border-radius: 8px; /* Antes 10px */
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    font-size: 13px; /* Antes 14px */
+    color: #333;
+  }
+  

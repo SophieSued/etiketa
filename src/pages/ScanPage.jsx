@@ -1,30 +1,28 @@
 import React from "react";
 import TituloProyecto from "../components/TituloProyecto";
 import BarcodeScanner from "../components/BarcodeScanner";
-import BotonesEscaneo from "../components/BotonesEscaneo";
+import InfoEscaneo from "../components/InfoEscaneo";
 import BarraFooterScan from "../components/BarraFooterScan";
 import "../styles/ScanPage.css";
 
 const ScanPage = () => {
   return (
-    <div className="mobile-wrapper"> 
-  <div className="scan-container">
-    <TituloProyecto />
+    <div className="mobile-wrapper">
+      <div className="scan-contenido">
+        <div className="scan-container">
+          <TituloProyecto />
+          <div className="scanner-box">
+            <BarcodeScanner />
+            <p className="texto-ayuda">Apunta al código de barra con la cámara</p>
+          </div>
+        </div>
 
-    <div className="scanner-box">
-      <BarcodeScanner />
-      <p className="texto-ayuda">Apunta al código de barra con la cámara</p>
+        <InfoEscaneo />
+      </div>
+
+      <BarraFooterScan />
     </div>
-
-    <BotonesEscaneo />
-  </div>
-
-    <BarraFooterScan />
-</div>
-
   );
 };
 
 export default ScanPage;
-
-

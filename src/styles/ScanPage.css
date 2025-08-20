@@ -1,16 +1,32 @@
-.scan-container {
+.mobile-wrapper {
   width: 100%;
-  padding: 16px;
+  max-width: 430px;
+  margin: 0 auto;
+  background-image: url('/fondo.png');
   background-size: cover;
-  background-color: transparent;
   background-position: center;
   background-repeat: no-repeat;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.scan-contenido {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 16px;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.scan-container {
+  padding: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-sizing: border-box;
-  flex: 1;              
-  overflow-y: auto;     
 }
 
 
@@ -19,7 +35,7 @@
   margin-top: 1.25rem;
   margin-bottom: 1.5rem;
   text-align: center;
-  color: white;
+  color: #333;
 }
 
 .scan-container video {
@@ -31,7 +47,7 @@
 
 .texto-ayuda {
   font-size: 14px;
-  color: white;
+  color: #555;
   margin-top: 1rem;
   text-align: center;
 }

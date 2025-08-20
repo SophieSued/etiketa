@@ -41,7 +41,8 @@
     width: 100%;
     max-width: 430px;
     margin: 0 auto;
-    background-image: url('/imagen-etiketa.png');
+    background-image: url('/fondo.png');
+    background-color: #ffffff; /* por si no carga la imagen */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -50,4 +51,5 @@
     flex-direction: column;
     justify-content: flex-start;
   }
+  
   

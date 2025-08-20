@@ -54,11 +54,12 @@ button:focus-visible {
   width: 100%;
   max-width: 430px;
   margin: 0 auto;
-  background-image: url('/imagen-etiketa.png');
+  background-color: #ffffff;
+  background-image: url('/fondo.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  min-height: 100vh;  
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

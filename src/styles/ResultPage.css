@@ -34,10 +34,13 @@
 }
 
 .encabezado-producto {
+  background-color: white;
+  border-radius: 16px;
+  padding: 16px;
+  margin: 16px;
   text-align: center;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  color: black;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  color: #333; /* color de texto general */
 }
 
 .imagen-producto {
@@ -45,16 +48,24 @@
   height: 120px;
   object-fit: contain;
   border-radius: 12px;
-  border: 1px solid #ccc;
-  margin-bottom: 0.5rem;
+  border: 1px solid #ddd;
+  margin-bottom: 0.75rem;
+  background-color: white; /* opcional, si la imagen tiene fondo transparente */
 }
 
-.encabezado-producto h2,
-.encabezado-producto p {
-  color: white;
-  text-align: center;
+.encabezado-producto h2 {
+  font-size: 16px;
+  font-weight: 600;
   margin: 0.3rem 0;
+  color: #222;
 }
+
+.encabezado-producto p {
+  font-size: 14px;
+  color: #666;
+  margin: 0.2rem 0;
+}
+
 
 .botones-analisis {
   display: flex;
@@ -167,30 +178,38 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: rgba(0, 172, 230, 0.4); 
-  border: 2px solid white;
+  background-color: white;
   border-radius: 20px;
-  padding: 1rem;
-  color: white;
+  padding: 20px 24px;
+  margin: 16px auto;
+  color: #111;
   font-weight: 600;
-  font-size: 1.1rem;
-  margin-top: 0;
-  width: 100%;
-  box-sizing: border-box;
+  font-size: 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  max-width: 430px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.info-clasificar:hover {
+  background-color: #f7f7f7;
 }
 
 .info-clasificar p {
   margin: 0;
   line-height: 1.4;
   flex: 1;
-  font-size: 1.1rem;
+  font-size: 16px;
+  color: #111;
 }
 
 .info-clasificar .flecha {
-  font-size: 2rem;
+  font-size: 22px;
   font-weight: bold;
   margin-left: 1rem;
+  color: #111;
 }
+
 
 .alternativa-recomendada {
   padding: 1rem;
@@ -248,31 +267,94 @@
 }
 
 .grafico-componente {
-  border: 2px solid white;
-  border-radius: 15px;
-  padding: 1rem;
-  margin-bottom: 1.5rem;
-  text-align: center;
-  color: white;
-  background-color: transparent;
+  background-color: white;
+  border-radius: 16px;
+  padding: 24px 32px;
+  margin: 16px auto;
+  max-width: 430px; /* o 440px, lo que te permita el diseño */
+  text-align: left;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  color: #222;
 }
 
-.donut-container {
-  position: relative;
-  width: 200px;
-  height: 200px;
-  margin: 0 auto;
+
+.grafico-componente h3 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 12px;
 }
 
-.donut-label {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 1rem;
-  font-weight: bold;
-  color: white;
+.barra-colores {
+  display: flex;
+  height: 12px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 16px;
 }
+
+.segmento {
+  flex-grow: 1;
+}
+
+.seguro {
+  background-color: #009961;
+}
+
+.bajo {
+  background-color: #f3dc00;
+}
+
+.moderado {
+  background-color: #e8801d;
+}
+
+.alto {
+  background-color: #e64444;
+}
+
+.leyenda-colores {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;   /* NO permitir que bajen de línea */
+  gap: 12px;
+}
+
+
+.etiqueta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  background-color: #f9f9f9;
+  padding: 4px 10px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+.etiqueta::before {
+  content: "";
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.etiqueta.seguro::before {
+  background-color: #009961;
+}
+
+.etiqueta.bajo::before {
+  background-color: #f3dc00;
+}
+
+.etiqueta.moderado::before {
+  background-color: #e8801d;
+}
+
+.etiqueta.alto::before {
+  background-color: #e64444;
+}
+
 
 .contenido-scroll {
   flex: 1;

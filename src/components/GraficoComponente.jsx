@@ -1,35 +1,23 @@
 import React from "react";
 import "../styles/ResultPage.css";
-import { Doughnut } from "react-chartjs-2";
-import { Chart as ChartJS, ArcElement, Tooltip } from "chart.js";
-
-ChartJS.register(ArcElement, Tooltip);
 
 const GraficoComponente = () => {
-  const data = {
-    labels: ["Bajo", "Moderado", "Alto", "Dañino"],
-    datasets: [
-      {
-        data: [40, 30, 20, 10],
-        backgroundColor: ["limegreen", "gold", "orange", "red"],
-        borderWidth: 0,
-      },
-    ],
-  };
-
-  const options = {
-    cutout: "70%", 
-    plugins: {
-      tooltip: { enabled: false },
-    },
-  };
-
   return (
     <div className="grafico-componente">
-      <h3>Análisis de componentes:</h3>
-      <div className="donut-container">
-        <Doughnut data={data} options={options} />
-        <div className="donut-label">%100</div>
+      <h3>Análisis de composición:</h3>
+
+      <div className="barra-colores">
+        <div className="segmento seguro"></div>
+        <div className="segmento bajo"></div>
+        <div className="segmento moderado"></div>
+        <div className="segmento alto"></div>
+      </div>
+
+      <div className="leyenda-colores">
+        <span className="etiqueta seguro">Seguro</span>
+        <span className="etiqueta bajo">Bajo</span>
+        <span className="etiqueta moderado">Moderado</span>
+        <span className="etiqueta alto">Alto</span>
       </div>
     </div>
   );
