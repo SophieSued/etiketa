@@ -1,11 +1,11 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import BienvenidoPage from "./pages/BienvenidoPage"; // pantalla de bienvenida
-import HomePage from "./pages/HomePage";             // home real de la app
+import BienvenidoPage from "./pages/BienvenidoPage"; 
+import HomePage from "./pages/HomePage";            
 import PaginaLogin from "./pages/PaginaLogin";
 import PaginaRegistro from "./pages/PaginaRegistro";
-import FiltrosPage from "./pages/FiltrosPage";       // 👈 importa el nuevo archivo
+import FiltrosPage from "./pages/FiltrosPage";       
 import ScanPage from "./pages/ScanPage";
 import ResultPage from "./pages/ResultPage";
 

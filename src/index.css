@@ -3,10 +3,10 @@ html, body, #root {
   padding: 0;
   width: 100%;
   min-height: 100%;
-  background-color: #000000; /* fondo general negro */
+  background-color: #000000; 
   overflow-x: hidden;
   display: flex;
-  justify-content: center; /* centra el .mobile-wrapper */
+  justify-content: center; 
 }
 
 :root {
@@ -49,7 +49,6 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-/* 📱 El contenedor de tu “app” */
 .mobile-wrapper {
   width: 100%;
   max-width: 430px;

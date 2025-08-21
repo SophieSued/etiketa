@@ -27,7 +27,7 @@ export default function HomePage() {
         </section>
       </div>
 
-      {/* Footer fijo */}
+      {}
       <div className="homepage__nav">
         <BarraFooter />
       </div>

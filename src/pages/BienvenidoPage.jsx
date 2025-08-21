@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../styles/BienvenidoPage.css"; // Opcional si quieres estilos separados
+import "../styles/BienvenidoPage.css"; 
 
 export default function BienvenidoPage() {
   return (

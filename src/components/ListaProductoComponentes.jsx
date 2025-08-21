@@ -5,7 +5,7 @@ const ListaProductoComponentes = ({ componentes }) => {
   const [verMas, setVerMas] = useState(false);
 
   const getColorStyle = (riesgoCrudo) => {
-    const riesgo = riesgoCrudo?.trim().toLowerCase(); // normaliza
+    const riesgo = riesgoCrudo?.trim().toLowerCase(); 
 
     switch (riesgo) {
       case "seguro":

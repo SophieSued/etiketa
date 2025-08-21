@@ -1,4 +1,3 @@
-/* Evita que el input se “salga” del contenedor */
 *, *::before, *::after { 
   box-sizing: border-box; 
 }
@@ -17,7 +16,7 @@
   box-shadow: 0 1px 6px rgba(0,0,0,.04);
   font-size: 12px;
   color: #333;
-  overflow: hidden; /* Si algo se pasa, que no se vea */
+  overflow: hidden; 
 }
 
 .bloque-info h3 {

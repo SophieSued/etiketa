@@ -1,4 +1,3 @@
-/* ========= Reset mínimo y variables ========= */
 *,
 *::before,
 *::after { box-sizing: border-box; }
@@ -29,27 +28,27 @@ html, body {
   justify-content: flex-start;
   padding: 16px;
 
-  /* Fondo de la página */
+
   background: url("/fondo.png") no-repeat center center fixed;
   background-size: cover;
 }
 
 
-/* ========= FORMULARIO (compacto) ========= */
+
 .formulario {
   width: 100%;
-  max-width: 360px;                 /* más angosto */
+  max-width: 360px;                 
   margin-inline: auto;
-  margin-block: 16px;               /* menos margen vertical */
-  padding: 14px 16px;               /* menos padding interno */
+  margin-block: 16px;               
+  padding: 14px 16px;               
   border-radius: 18px;
   background: var(--c-card);
   box-shadow: 0 8px 24px rgba(16,24,40,.08), inset 0 1px 0 rgba(255,255,255,.6);
 
   display: grid;
   grid-template-columns: 1fr;
-  gap: 12px;                        /* menos espacio entre campos */
-  overflow: hidden;                 /* evita que algo “salte” fuera del card */
+  gap: 12px;                        
+  overflow: hidden;                
 }
 
 .formulario h2{
@@ -59,14 +58,12 @@ html, body {
   letter-spacing: .3px;
 }
 
-/* Subtítulo dentro del card */
 .formulario .sub{
   margin: 0 0 8px !important;
   color: var(--c-muted);
   line-height: 1.35;
 }
 
-/* ========= Inputs ========= */
 .formulario input{
   width: 100%;
   border: 0;
@@ -86,23 +83,21 @@ html, body {
   transform: translateY(-1px);
 }
 
-/* ========= Fila doble: Nombre / Apellido ========= */
 .formulario--registro .split-2{
   display: grid;
-  grid-template-columns: 1fr;       /* en mobile, apilados */
-  gap: 12px;                        /* aire entre los dos */
-  margin-bottom: 8px;               /* separación con el siguiente campo */
+  grid-template-columns: 1fr;       
+  gap: 12px;                        
+  margin-bottom: 8px;               
 }
 @media (min-width: 560px){
   .formulario--registro .split-2{
-    grid-template-columns: 1fr 1fr; /* en desktop, lado a lado */
-    column-gap: 12px;               /* separación horizontal */
+    grid-template-columns: 1fr 1fr; 
+    column-gap: 12px;               
     row-gap: 0;
     margin-bottom: 10px;
   }
 }
 
-/* ========= Botones seleccionables tipo input ========= */
 .botones-filtros{
   display: grid;
   grid-template-columns: 1fr;
@@ -135,7 +130,6 @@ html, body {
   box-shadow: 0 0 0 3px rgba(17,181,229,.18), 0 4px 12px rgba(16,24,40,.06);
 }
 
-/* ========= (Opcional) botón submit interno si alguna otra pantalla lo usa ========= */
 .formulario .submit-btn{
   width: 100%;
   border: 0;
@@ -155,10 +149,8 @@ html, body {
 }
 .formulario .submit-btn:active{ transform: translateY(0); filter: saturate(.95); }
 
-/* Error inline */
 .formulario .error{ color: #e5484d; margin-top: -2px; }
 
-/* ========= Header del paso (logo + dots) ========= */
 .logo-container { text-align: center; margin-bottom: 14px; }
 .logo { max-width: 100px; height: auto; }
 
@@ -178,9 +170,6 @@ html, body {
 }
 .dot.active{ background: var(--c-primary); }
 
-/* =========================
-   Compactación extra en pantallas bajas
-   ========================= */
 @media (max-height: 740px){
   .formulario{
     max-width: 340px;
@@ -202,13 +191,10 @@ html, body {
   .logo{ max-width: 84px; }
 }
 
-/* =========================================================
-   CONTENIDO EXTERNO AL CARD (botón Continuar + link login)
-   ========================================================= */
 .acciones-externas{
   width: 100%;
-  max-width: 430px;                /* igual que el marco del mock */
-  margin: 12px auto 0;             /* pegado visualmente al card */
+  max-width: 430px;                
+  margin: 12px auto 0;             
   display: grid;
   place-items: center;
   gap: 10px;
@@ -225,7 +211,7 @@ html, body {
   background: var(--c-primary);
   box-shadow: 0 10px 20px rgba(17,181,229,.35), inset 0 1px 0 rgba(255,255,255,.25);
   transition: transform .06s ease, box-shadow .2s ease, filter .2s ease;
-  width: min(320px, 82%);          /* ancho grande, centrado como el mock */
+  width: min(320px, 82%);        
 }
 .cta-externa:hover{
   box-shadow: 0 14px 26px rgba(17,181,229,.42), inset 0 1px 0 rgba(255,255,255,.25);
@@ -245,7 +231,6 @@ html, body {
   text-decoration: none;
 }
 
-/* Responsive: un poco menos alto en pantallas bajas */
 @media (max-height: 740px){
   .acciones-externas{ gap: 8px; margin-top: 10px; }
   .cta-externa{ padding: 12px 18px; font-size: 20px; }

@@ -26,7 +26,6 @@ html, body, #root {
   background: var(--bg);
 }
 
-/* HeaderHome */
 .home__header {
   display: flex;
   justify-content: space-between;
@@ -52,7 +51,6 @@ html, body, #root {
   cursor: pointer;
 }
 
-/* SearchBar */
 .home__search input {
   width: 100%;
   height: 48px;
@@ -65,7 +63,6 @@ html, body, #root {
   box-shadow: var(--shadow);
 }
 
-/* FiltrosRapidos */
 .home__filters {
   background: #fff;
   border: 1px solid var(--stroke);
@@ -93,7 +90,6 @@ html, body, #root {
   cursor: pointer;
 }
 
-/* EstadisticasBox */
 .stats {
   display: flex;
   justify-content: space-between;
@@ -150,7 +146,6 @@ html, body, #root {
   color: var(--muted);
 }
 
-/* ListaProductos */
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -204,42 +199,37 @@ html, body, #root {
 .card__risk--medio { background: #F6B21A; }
 .card__risk--alto { background: #E63946; }
 
-/* Encabezados de sección */
 h3 {
   margin-top: 16px;
   margin-bottom: 8px;
   font-size: 18px;
 }
 
-/* Ajuste safe-area para móviles */
 @supports (padding-bottom: env(safe-area-inset-bottom)) {
   .homepage {
     padding-bottom: calc(16px + env(safe-area-inset-bottom));
   }
 }
 
-/* Normaliza el lienzo general */
 html, body, #root {
   height: 100%;
 }
 
 body {
   margin: 0;
-  background: #F5F7FB;      /* igual que la app, así no se ven los laterales oscuros */
-  overflow-x: hidden;        /* evita cualquier desplazamiento lateral accidental */
+  background: #F5F7FB;      
+  overflow-x: hidden;        
 }
 
-/* Contenedor “teléfono” centrado y alto mínimo de viewport */
 .homepage {
-  min-height: 100svh;        /* usa el alto real del viewport en móviles */
+  min-height: 100svh;      
   width: 100%;
   max-width: 430px;
   margin: 0 auto;
   position: relative;
-  background: #F5F7FB;       /* por si el body usa otro fondo en otro tema */
+  background: #F5F7FB;       
 }
 
-/* Footer fijo centrado al viewport y no al contenedor */
 .barra-footer {
   position: fixed;
   bottom: env(safe-area-inset-bottom, 0);
@@ -250,7 +240,6 @@ body {
   z-index: 1000;
 }
 
-/* El nav del footer con fondo/blanco consistente */
 .barra-footer nav {
   height: 64px;
   background: #fff;
@@ -260,12 +249,10 @@ body {
   align-items: center;
 }
 
-/* Deja espacio para que el footer no tape el contenido */
 .app, .homepage {
   padding-bottom: max(84px, env(safe-area-inset-bottom));
 }
 
-/* (Opcional) Ajuste de grilla para no “salirse” en anchos pequeños */
 .grid {
   display: grid;
   gap: 12px;
@@ -275,26 +262,21 @@ body {
   .grid { grid-template-columns: repeat(2, 1fr); }
 }
 
-/* Imágenes de cards sin “salto” de línea base */
 .card__figure img {
   display: block;
 }
-/* === FIX franja blanca (sin cambiar fondos) === */
 
-/* Anula los height:100% que tenías en html, body y #root */
 html, body, #root {
-  height: auto;        /* o: height: initial; */
+  height: auto;      
 }
 
-/* Hace que el contenedor cubra todo el alto visible del viewport */
 #root {
-  min-height: 100svh;  /* mejor que 100%/100vh en móviles modernos */
+  min-height: 100svh;  
   display: flex;
   justify-content: center;
-  align-items: flex-start;  /* usa center si querés centrar vertical */
+  align-items: flex-start;  
 }
 
-/* Ya lo tenés, pero por las dudas: evita “scroll” lateral que a veces muestra bordes */
 body {
   overflow-x: hidden;
 }

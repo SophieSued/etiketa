@@ -17,16 +17,15 @@ function ProductCard({ p }) {
 
 export default function ListaProductos({ tipo = "recientes", items, max }) {
   const [data, setData] = useState([]);
-  const [state, setState] = useState("idle"); // idle | loading | ok | empty | error
+  const [state, setState] = useState("idle"); 
 
   useEffect(() => {
-    if (tipo !== "recientes") return;                    // solo para recientes
-    if (Array.isArray(items) && items.length) return;    // si te pasan items, usalos
+    if (tipo !== "recientes") return;                    
+    if (Array.isArray(items) && items.length) return;    
 
     const controller = new AbortController();
     setState("loading");
 
-    // 👇 CAMBIÁ ESTA BASE AL PUERTO/RUTA CORRECTOS
     const API_BASE = "http://localhost:3000";
 
     fetch(`${API_BASE}/historial/ver-historial`, { signal: controller.signal })

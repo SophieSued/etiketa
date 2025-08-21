@@ -1,4 +1,3 @@
-// src/components/FormularioRegistro.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import StepDots from "../components/StepDots";
@@ -22,26 +21,26 @@ const FormularioRegistro = ({ onRegistro }) => {
       return;
     }
     const datos = { nombre, apellido, email, password };
-    onRegistro?.(datos);          // ❗ mantiene tu conexión
+    onRegistro?.(datos);          
     navigate("/filtros");
   };
 
   return (
     <div className="auth-page">
-      {/* Logo y pasos */}
+      {}
       <div className="logo-container">
         <img src="/Logo chico (1).png" alt="Logo Etiketa" className="logo" />
       </div>
       <StepDots />
 
-      {/* Card del formulario */}
+      {}
       <form id="registroForm" className="formulario formulario--registro" onSubmit={handleSubmit}>
         <h2>Bienvenido!!</h2>
         <p className="sub">
           Ingresa tus datos para crear tu cuenta en <strong>Etiketa</strong>
         </p>
 
-        {/* Nombre / Apellido */}
+        {}
         <div className="split-2">
           <input
             type="text"
@@ -61,7 +60,7 @@ const FormularioRegistro = ({ onRegistro }) => {
           />
         </div>
 
-        {/* Email */}
+        {}
         <input
           type="email"
           placeholder="Correo electrónico"
@@ -71,7 +70,7 @@ const FormularioRegistro = ({ onRegistro }) => {
           aria-label="Correo electrónico"
         />
 
-        {/* Passwords */}
+        {}
         <input
           type="password"
           placeholder="Crear contraseña"
@@ -92,7 +91,7 @@ const FormularioRegistro = ({ onRegistro }) => {
         {error && <small className="error">{error}</small>}
       </form>
 
-      {/* Botón + link FUERA del card */}
+      {}
       <div className="acciones-externas">
         <button form="registroForm" type="submit" className="cta-externa">
           Continuar

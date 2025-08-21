@@ -42,7 +42,6 @@ const InfoEscaneo = () => {
         return;
       }
 
-      // Guardar en localStorage igual que BarcodeScanner
       localStorage.setItem("productoDetectado", JSON.stringify(prods[0]));
       navigate("/resultado");
     } catch (err) {

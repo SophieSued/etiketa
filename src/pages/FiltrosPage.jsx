@@ -1,13 +1,12 @@
-// src/pages/FiltrosPage.jsx
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";  // 👈 import
+import { useNavigate } from "react-router-dom";  
 import StepDots from "../components/StepDots";
 import "../styles/Formularios.css";
 
 const FiltrosPage = () => {
   const opciones = ["Celiaquía", "Vegano/a", "Alergía", "Otra restricción"];
   const [seleccionados, setSeleccionados] = useState([]);
-  const navigate = useNavigate();  // 👈 hook de navegación
+  const navigate = useNavigate();  
 
   const toggleSeleccion = (opcion) => {
     setSeleccionados((prev) =>
@@ -21,13 +20,12 @@ const FiltrosPage = () => {
     e.preventDefault();
     console.log("Filtros seleccionados:", seleccionados);
 
-    // 👇 redirige a /inicio
     navigate("/inicio");
   };
 
   return (
     <div className="auth-page">
-      {/* Logo */}
+      {}
       <div className="logo-container">
         <img
           src="/Logo chico (1).png"
@@ -36,10 +34,10 @@ const FiltrosPage = () => {
         />
       </div>
 
-      {/* Bolitas de pasos */}
+      {}
       <StepDots />
 
-      {/* Formulario de filtros */}
+      {}
       <form className="formulario formulario--registro" onSubmit={handleSubmit}>
         <h2 style={{ textAlign: "left" }}>Personaliza tu experiencia</h2>
         <p style={{ marginTop: 0, color: "var(--c-muted)", textAlign: "left" }}>
@@ -48,7 +46,7 @@ const FiltrosPage = () => {
           para recibir recomendaciones más precisas
         </p>
 
-        {/* Botones tipo “input” */}
+        {}
         <div className="botones-filtros">
           {opciones.map((opcion) => {
             const activo = seleccionados.includes(opcion);
@@ -66,7 +64,7 @@ const FiltrosPage = () => {
           })}
         </div>
 
-        {/* Botón de acción */}
+        {}
         <button type="submit" className="submit-btn">
           Crear cuenta
         </button>

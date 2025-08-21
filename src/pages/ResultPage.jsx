@@ -75,7 +75,7 @@ const ResultPage = () => {
               <ListaProductoComponentes componentes={componentes} />
             </>
           ) : (
-            /* === Tarjeta alternativa estilo blanco con score a la derecha === */
+          
             <div className="alternativa-card-blanca">
               <img
                 src={producto.alternativa_img || "bagovit.jpeg"}
