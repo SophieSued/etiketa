@@ -1,17 +1,14 @@
-/* ---- Contenedor centrado a 430 px, sin fondo ---- */
+
 .barra-footer-scan{
   position: fixed;
   bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
   width: 100%;
-  max-width: 430px;           /* ajústalo si tu app usa otro ancho */
+  max-width: 430px;           
   padding: 0;
-  background: transparent;    /* nada de píldora azul */
+  background: transparent;   
   z-index: 1000;
 }
 
-/* ---- La barra blanca es el nav ---- */
 .barra-footer-scan nav{
   height: 64px;
   background: #fff;
@@ -22,7 +19,7 @@
   align-items: center;
 }
 
-/* ---- Distribución de íconos ---- */
+
 .barra-footer-scan nav ul{
   width: 100%;
   display: flex;
@@ -38,8 +35,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #9CA3AF;         /* gris */
-  font-size: 0;           /* evita espacio por texto */
+  color: #9CA3AF;         
+  font-size: 0;          
 }
 
 .barra-footer-scan a{
@@ -52,21 +49,20 @@
   height: 100%;
 }
 
-/* Oculta etiquetas bajo el ícono (si tienes <span>) */
+
 .barra-footer-scan nav li span{ display:none; }
 
-/* Tamaño / color de íconos */
+
 .barra-footer-scan nav li i,
 .barra-footer-scan nav li svg{
   width: 28px; height: 28px; font-size: 28px;
   color: #9CA3AF; opacity: .9;
 }
 
-/* Activo un poco más oscuro (opcional) */
+
 .barra-footer-scan nav li.active i,
 .barra-footer-scan nav li.active svg{
   color:#6B7280; opacity:1;
 }
 
-/* Para que el contenido no quede tapado */
 body{ padding-bottom: 68px; }
