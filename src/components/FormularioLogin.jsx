@@ -7,30 +7,36 @@ const FormularioLogin = ({ onLogin }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const datos = { email, password }; 
-    onLogin?.(datos);
+    onLogin?.({ email, password });
   };
-  
+
   return (
-    <form className="formulario" onSubmit={handleSubmit}>
-      <h2>Iniciar sesión</h2>
-      <input
-        type="email"
-        placeholder="Correo electrónico"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-      />
-      <input
-        type="password"
-        placeholder="Contraseña"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-      />
-      <button type="submit">Entrar</button>
-    </form>
+    <div className="auth-page auth-page--login">
+      <form className="formulario formulario--registro" onSubmit={handleSubmit}>
+        <h2>Iniciar sesión</h2>
+
+        <input
+          type="email"
+          placeholder="Correo electrónico"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+
+        <input
+          type="password"
+          placeholder="Contraseña"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+
+        <button type="submit" className="submit-btn">Entrar</button>
+      </form>
+    </div>
   );
 };
 
 export default FormularioLogin;
+
+

@@ -235,3 +235,130 @@ html, body {
   .acciones-externas{ gap: 8px; margin-top: 10px; }
   .cta-externa{ padding: 12px 18px; font-size: 20px; }
 }
+
+/* ===== Login: que se vea como el mock ===== */
+.formulario--login{
+  border-radius: 28px;                 /* esquinas más grandes como en la 1ra imagen */
+  gap: 14px;
+}
+
+/* Título y subtítulo alineados a la izquierda */
+.formulario--login h2{
+  text-align: left;                    /* ← no centrado */
+  color: var(--c-primary);             /* celeste del mock */
+  font-size: 26px;
+  line-height: 1.2;
+  margin: 0 0 6px;
+  font-weight: 800;
+}
+.formulario--login .sub,
+.formulario--login p{
+  text-align: left;
+  color: #5b6571;                      /* gris más oscuro y legible */
+  margin: 0 0 10px;
+}
+
+/* Inputs pill con borde suave, como en el mock */
+.formulario--login input{
+  background: var(--c-input);          /* #f2f4f7 */
+  border: 1.5px solid #e6e8ec;         /* borde clarito */
+  border-radius: 16px;
+  padding: 14px 18px;
+  font-size: 16px;
+  color: var(--c-text);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.9), /* brillo superior sutil */
+    0 0 0 rgba(0,0,0,0);                /* sin sombra exterior */
+}
+.formulario--login input::placeholder{
+  color: #9aa3ae;
+  font-weight: 600;
+}
+
+/* Foco claro (no tan “glow”) */
+.formulario--login input:focus{
+  background: #fff;
+  border-color: #cfeefa;
+  box-shadow: 0 0 0 3px rgba(17,181,229,.18);
+  outline: none;
+}
+
+/* ⚠️ Safari/Chrome: neutraliza el gris del autocompletado */
+.formulario--login input:-webkit-autofill,
+.formulario--login input:-webkit-autofill:hover,
+.formulario--login input:-webkit-autofill:focus{
+  -webkit-text-fill-color: var(--c-text);
+  transition: background-color 9999s ease-in-out 0s;
+  box-shadow: 0 0 0px 1000px var(--c-input) inset; /* mantiene el fondo claro */
+  border: 1.5px solid #e6e8ec;
+}
+
+/* Botón (si el login lleva botón dentro del card) */
+.formulario--login .submit-btn{
+  background: #111;                    /* si lo querés negro como tu 2da captura */
+  border-radius: 16px;
+  padding: 14px 18px;
+  font-size: 18px;
+}
+.formulario--login .submit-btn:hover{
+  filter: brightness(1.03);
+  box-shadow: 0 6px 14px rgba(0,0,0,.15);
+}
+
+/* Centrar el login en el medio de la pantalla */
+.auth-page--login {
+  min-height: 100vh;              /* ocupa toda la altura */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;        /* centro vertical */
+  align-items: center;            /* centro horizontal */
+  padding: 0;                     /* aseguramos que no empuje hacia abajo */
+}
+
+.auth-page--login .logo-container {
+  margin-bottom: 20px; /* espacio entre logo y formulario */
+}
+
+/* Centrar SOLO el login en el medio de la pantalla */
+.auth-page.auth-page--login{
+  min-height: 100svh;   /* viewport real móvil */
+  display: grid;
+  place-content: center; /* centro vertical + horizontal */
+  padding: 0;
+}
+
+.auth-page.auth-page--login .formulario{
+  margin: 0 !important; /* evita margen que lo empuje hacia arriba */
+}
+
+/* ====== LOGIN más grande (sin cambiar estética) ====== */
+.auth-page--login .formulario{
+  max-width: 420px !important;   /* antes 360px */
+  padding: 18px 20px !important; /* un poco más de aire */
+  gap: 14px !important;
+  border-radius: 20px;
+}
+
+.auth-page--login .formulario h2{
+  font-size: 24px;               /* título un poco mayor */
+  margin-bottom: 8px;
+}
+
+.auth-page--login .formulario input{
+  padding: 14px 16px;            /* inputs más altos */
+  font-size: 16px;
+  border-radius: 16px;
+}
+
+.auth-page--login .formulario .submit-btn{
+  padding: 14px 18px;            /* botón más alto */
+  font-size: 18px;
+  border-radius: 16px;
+}
+
+/* En pantallas algo más anchas, permite aún más ancho */
+@media (min-width: 480px){
+  .auth-page--login .formulario{
+    max-width: 440px !important;
+  }
+}
