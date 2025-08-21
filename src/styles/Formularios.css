@@ -1,55 +1,228 @@
-.pagina-acceso {
-    width: 100%;
-    max-width: 430px;
-    margin: 0 auto;
-    min-height: 100vh;
-    background-color: #e5f6ff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem 1rem;
-    box-sizing: border-box;
+/* ========= Reset mínimo y variables ========= */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+:root{
+  --c-bg:#f6f8fb;
+  --c-card:#fff;
+  --c-input:#f2f4f7;
+  --c-text:#1f2937;
+  --c-muted:#9aa3ae;
+  --c-primary:#11b5e5;
+}
+
+html, body {
+  height: 100%;
+  -webkit-text-size-adjust: 100%;
+  background: var(--c-bg);
+  color: var(--c-text);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  margin: 0;
+}
+
+/* ========= Página centrada y con padding seguro ========= */
+.auth-page{
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding:
+    max(16px, env(safe-area-inset-top))
+    max(16px, env(safe-area-inset-right))
+    max(16px, env(safe-area-inset-bottom))
+    max(16px, env(safe-area-inset-left));
+  background:
+    radial-gradient(1200px 600px at -10% 10%, #ffffff 0%, #eef3f9 60%, #eaf1f8 100%),
+    linear-gradient(180deg, #f9fbff 0%, #f2f6fb 100%);
+  overflow-y: auto;
+}
+
+.formulario {
+  width: 100%;
+  max-width: 400px;
+  margin-inline: auto;
+  margin-block: clamp(20px, 6vh, 40px);
+  padding: clamp(16px, 3vw, 24px);
+  border-radius: 22px;
+  background: var(--c-card);
+  box-shadow: 0 12px 40px rgba(16,24,40,.08), inset 0 1px 0 rgba(255,255,255,.6);
+
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(10px, 2vw, 14px);
+}
+
+.formulario h2{
+  margin: 4px 0 8px;
+  font-size: clamp(20px, 2.6vw, 24px);
+  text-align: center;
+  letter-spacing: .3px;
+}
+
+/* ========= Inputs antiguos (si todavía se usan en otras pantallas) ========= */
+.formulario input{
+  width: 100%;
+  border: 0;
+  outline: none;
+  background: var(--c-input);
+  border-radius: 16px;
+  padding: 16px 18px;
+  font-size: 16px;
+  color: var(--c-text);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.8), 0 1px 0 rgba(16,24,40,.02);
+  transition: box-shadow .2s ease, background .2s ease, transform .05s ease;
+}
+.formulario input::placeholder{ color: var(--c-muted); }
+.formulario input:focus{
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(17,181,229,.18), 0 8px 18px rgba(16,24,40,.06);
+  transform: translateY(-1px);
+}
+
+/* ========= Botones seleccionables tipo input ========= */
+.botones-filtros{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin: 8px 0 16px;
+}
+
+.chip-btn{
+  width: 100%;
+  display: block;
+  text-align: left;
+  cursor: pointer;
+
+  background: var(--c-input);
+  border: 1.5px solid #e5e7eb;
+  border-radius: 18px;
+  padding: 14px 18px;
+
+  font-size: 16px;
+  font-weight: 600;
+  color: #9aa3ae;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.85),
+              0 1px 0 rgba(16,24,40,.02);
+  transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
+}
+
+.chip-btn.is-active{
+  background: #fff;
+  border-color: var(--c-primary);
+  color: var(--c-text);
+  box-shadow: 0 0 0 3px rgba(17,181,229,.18),
+              0 6px 16px rgba(16,24,40,.06);
+}
+
+/* ========= Botón principal (Crear cuenta) ========= */
+.submit-btn{
+  border: 0;
+  cursor: pointer;
+  margin-top: 20px;
+  padding: 16px 22px;
+  font-size: clamp(18px, 2.2vw, 20px);
+  font-weight: 800;
+  border-radius: 18px;
+  color: #fff;
+  background: var(--c-primary);
+  box-shadow: 0 10px 20px rgba(17,181,229,.35), inset 0 1px 0 rgba(255,255,255,.25);
+  transition: transform .06s ease, box-shadow .2s ease, filter .2s ease;
+  width: 100%;
+}
+
+.submit-btn:hover{
+  box-shadow: 0 14px 26px rgba(17,181,229,.42), inset 0 1px 0 rgba(255,255,255,.25);
+  transform: translateY(-1.5px);
+}
+.submit-btn:active{ transform: translateY(0); filter: saturate(.95); }
+
+/* ========= Micro-ajustes móviles chicos ========= */
+@media (max-width: 360px){
+  .formulario{ border-radius: 22px; }
+  .formulario input{ padding: 14px 16px; }
+  .formulario button{ padding: 14px 18px; }
+  .chip-btn{ padding: 12px 16px; border-radius: 16px; }
+}
+
+.logo-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.logo {
+  max-width: 120px;
+  height: auto;
+}
+
+.steps{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0 18px;
+}
+
+.dot{
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: #d1d5db;
+  box-shadow: 0 1px 0 rgba(16,24,40,.06) inset;
+}
+
+.dot.active{
+  background: var(--c-primary);
+}
+
+/* =========================
+   Compactación por pantallas BAJAS
+   ========================= */
+   @media (max-height: 740px){
+    .auth-page{
+      padding: 12px;                 /* menos padding del contenedor */
+    }
+  
+    .logo-container{ margin-bottom: 8px; }
+    .logo{ max-width: 84px; }        /* logo más chico */
+    .steps{ margin: 6px 0 12px; }     /* menos espacio para los dots */
+  
+    .formulario{
+      max-width: 380px;               /* un poco más angosto */
+      margin-block: 8px;              /* menos margen vertical */
+      padding: 14px;                  /* menos padding interno */
+      gap: 10px;                      /* menos separación entre campos */
+      border-radius: 18px;
+    }
+  
+    .formulario h2{
+      margin: 0 0 4px;
+      font-size: 20px;                /* título más compacto */
+    }
+  
+    .formulario p{ margin: 0 0 6px !important; }
+  
+    .formulario input{
+      padding: 12px 14px;             /* inputs más bajos */
+      font-size: 15px;
+      border-radius: 14px;
+    }
+  
+    .submit-btn,
+    .formulario button{
+      padding: 12px 16px;             /* botón más bajo */
+      font-size: 16px;
+      border-radius: 14px;
+    }
   }
   
-  .boton-acceso {
-    width: 100%;
-    max-width: 280px;
-    padding: 0.8rem;
-    margin: 0.5rem 0;
-    font-size: 1rem;
-    font-weight: bold;
-    background-color: #333;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
+  /* Ultra-compacto para alturas MUY chicas */
+  @media (max-height: 640px){
+    .logo{ max-width: 72px; }
+    .steps{ margin: 4px 0 10px; }
+    .formulario{ padding: 12px; gap: 8px; }
+    .formulario h2{ font-size: 19px; }
+    .formulario input{ padding: 10px 12px; font-size: 14.5px; }
+    .submit-btn,
+    .formulario button{ padding: 10px 14px; font-size: 15.5px; }
   }
-  
-  .boton-acceso:hover {
-    background-color: #555;
-  }
-  
-  .pagina-acceso h2 {
-    font-size: 1.8rem;
-    color: #007ba7;
-    margin-bottom: 1.5rem;
-    text-align: center;
-  }
-  
-  .mobile-wrapper {
-    width: 100%;
-    max-width: 430px;
-    margin: 0 auto;
-    background-image: url('/fondo.png');
-    background-color: #ffffff; /* por si no carga la imagen */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-  }
-  
   

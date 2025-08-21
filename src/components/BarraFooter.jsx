@@ -12,7 +12,7 @@ const BarraFooter = () => {
       <nav>
         <ul>
           <li>
-            <Link to="/">
+            <Link to="/inicio">
               <AiFillHome size={22} />
               <span>Inicio</span>
             </Link>

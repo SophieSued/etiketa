@@ -1,45 +1,72 @@
-.barra-footer-scan {
+/* ---- Contenedor centrado a 430 px, sin fondo ---- */
+.barra-footer-scan{
   position: fixed;
   bottom: 0;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 100%;
-  max-width: 100%;
-  padding: 0.6rem 1rem;
-  background-color: #007ba7;
-  border-top-left-radius: 14px;
-  border-top-right-radius: 14px;
-  box-sizing: border-box;
+  max-width: 430px;           /* ajústalo si tu app usa otro ancho */
+  padding: 0;
+  background: transparent;    /* nada de píldora azul */
   z-index: 1000;
 }
 
-.barra-footer-scan nav {
-  background-color: transparent;
+/* ---- La barra blanca es el nav ---- */
+.barra-footer-scan nav{
+  height: 64px;
+  background: #fff;
+  border-top: 1px solid #E5E7EB;
+  border-radius: 0;
   padding: 0;
+  display: flex;
+  align-items: center;
 }
 
-.barra-footer-scan nav ul {
+/* ---- Distribución de íconos ---- */
+.barra-footer-scan nav ul{
+  width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 0 12px;
 }
 
-.barra-footer-scan nav li {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 0.75rem;
-  color: white;
-  gap: 4px;
+.barra-footer-scan nav li{
   flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9CA3AF;         /* gris */
+  font-size: 0;           /* evita espacio por texto */
 }
 
-.barra-footer-scan a {
+.barra-footer-scan a{
   text-decoration: none;
   color: inherit;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
 }
+
+/* Oculta etiquetas bajo el ícono (si tienes <span>) */
+.barra-footer-scan nav li span{ display:none; }
+
+/* Tamaño / color de íconos */
+.barra-footer-scan nav li i,
+.barra-footer-scan nav li svg{
+  width: 28px; height: 28px; font-size: 28px;
+  color: #9CA3AF; opacity: .9;
+}
+
+/* Activo un poco más oscuro (opcional) */
+.barra-footer-scan nav li.active i,
+.barra-footer-scan nav li.active svg{
+  color:#6B7280; opacity:1;
+}
+
+/* Para que el contenido no quede tapado */
+body{ padding-bottom: 68px; }

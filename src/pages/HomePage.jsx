@@ -5,24 +5,32 @@ import FiltrosRapidos from "../components/FiltrosRapidos";
 import EstadisticasBox from "../components/EstadisticasBox";
 import ListaProductos from "../components/ListaProductos";
 import BarraFooter from "../components/BarraFooter";
+import "../styles/HomePage.css";
 
-const HomePage = () => {
+export default function HomePage() {
   return (
-    <div className="homepage">
-      <HeaderHome />
-      <SearchBar />
-      <FiltrosRapidos />
-      <EstadisticasBox />
+    <div className="homepage app">
+      <div className="homepage__content">
+        <HeaderHome />
+        <SearchBar />
+        <FiltrosRapidos />
+        <EstadisticasBox />
 
-      <h3>Recientes ➤</h3>
-      <ListaProductos tipo="recientes" />
+        <section className="section section--recientes">
+          <h3>Recientes ➤</h3>
+          <ListaProductos tipo="recientes" />
+        </section>
 
-      <h3>Favoritos ☆</h3>
-      <ListaProductos tipo="favoritos" />
+        <section className="section section--favoritos">
+          <h3>Favoritos ☆</h3>
+          <ListaProductos tipo="favoritos" />
+        </section>
+      </div>
 
-      <BarraFooter />
+      {/* Footer fijo */}
+      <div className="homepage__nav">
+        <BarraFooter />
+      </div>
     </div>
   );
-};
-
-export default HomePage;
+}

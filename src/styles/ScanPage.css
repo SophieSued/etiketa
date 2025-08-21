@@ -1,53 +1,73 @@
-.mobile-wrapper {
+/* === Layout general de la pantalla de scan === */
+:root{
+  --tabbar-h: 64px; /* alto de tu barra inferior */
+}
+
+body{ margin: 0; }
+
+.mobile-wrapper{
   width: 100%;
   max-width: 430px;
   margin: 0 auto;
+
   background-image: url('/fondo.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height: 100vh;
+
+  /* usa la altura real del viewport en móviles */
+  min-height: 100dvh;
+
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+
+  /* que no aparezca scroll global extra */
+  overflow: clip;
 }
 
-.scan-contenido {
+/* En ScanPage, quitamos la reserva del footer */
+.scan-page{
+  padding-bottom: 0 !important;
+}
+
+.scan-contenido{
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  gap: 12px;
   padding: 16px;
-  overflow-y: auto;
+  overflow: auto;        /* el scroll, si hace falta, queda acá */
   box-sizing: border-box;
 }
 
-.scan-container {
+.scan-container{
   padding: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-
-.scan-container h1 {
+.scan-container h1{
   font-size: 1.5rem;
-  margin-top: 1.25rem;
-  margin-bottom: 1.5rem;
+  margin: 12px 0 16px;
   text-align: center;
   color: #333;
 }
 
-.scan-container video {
+/* visor de cámara / video */
+.scan-container video{
   width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: 40dvh;      /* evita que empuje todo hacia abajo */
+  object-fit: cover;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  background-color: black;
+  box-shadow: 0 4px 12px rgba(0,0,0,.15);
+  background: #000;
 }
 
-.texto-ayuda {
+.texto-ayuda{
   font-size: 14px;
   color: #555;
-  margin-top: 1rem;
+  margin-top: 10px;
   text-align: center;
 }

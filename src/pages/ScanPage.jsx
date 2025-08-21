@@ -7,7 +7,7 @@ import "../styles/ScanPage.css";
 
 const ScanPage = () => {
   return (
-    <div className="mobile-wrapper">
+    <div className="mobile-wrapper scan-page">
       <div className="scan-contenido">
         <div className="scan-container">
           <TituloProyecto />
@@ -26,3 +26,4 @@ const ScanPage = () => {
 };
 
 export default ScanPage;
+

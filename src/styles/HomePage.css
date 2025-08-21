@@ -1,0 +1,301 @@
+:root {
+  --bg: #F5F7FB;
+  --card: #FFFFFF;
+  --text: #111827;
+  --muted: #6B7280;
+  --brand: #0DB9D7;
+  --stroke: #E5E7EB;
+  --radius: 22px;
+  --shadow: 0 6px 20px rgba(17,24,39,.06);
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+.app {
+  padding-bottom: max(84px, env(safe-area-inset-bottom));
+}
+
+.homepage {
+  min-height: 100%;
+  width: 100%;
+  max-width: 430px;
+  margin: 0 auto;
+  padding: 16px 14px 0;
+  background: var(--bg);
+}
+
+/* HeaderHome */
+.home__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 4px 2px 12px;
+}
+.home__title {
+  font-size: 44px;
+  line-height: 1;
+  color: var(--brand);
+  font-weight: 700;
+  letter-spacing: .5px;
+}
+.icon-btn {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 999px;
+  background: #0DB9D71A;
+  display: grid;
+  place-items: center;
+  color: #08A6C1;
+  cursor: pointer;
+}
+
+/* SearchBar */
+.home__search input {
+  width: 100%;
+  height: 48px;
+  border-radius: 16px;
+  border: 1px solid var(--stroke);
+  background: #fff;
+  outline: none;
+  padding: 0 16px;
+  font-size: 16px;
+  box-shadow: var(--shadow);
+}
+
+/* FiltrosRapidos */
+.home__filters {
+  background: #fff;
+  border: 1px solid var(--stroke);
+  border-radius: 20px;
+  padding: 14px;
+  margin: 14px 0;
+  box-shadow: var(--shadow);
+}
+.home__filters h3 {
+  margin: 0 0 10px;
+  font-size: 16px;
+}
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.chip {
+  border: none;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: #F4F7FA;
+  color: #111827;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* EstadisticasBox */
+.stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  border: 1px solid var(--stroke);
+  border-radius: 20px;
+  padding: 16px;
+  margin: 10px 0 18px;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+.stats::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 10px;
+  bottom: 10px;
+  width: 10px;
+  background: linear-gradient(180deg, #00C2EA, #11A8C6);
+  border-radius: 10px;
+}
+.stats__left {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.stats__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: #E8FBFF;
+}
+.stats__big {
+  font-size: 28px;
+  font-weight: 800;
+}
+.stats__label {
+  color: var(--muted);
+}
+.stats__right {
+  text-align: right;
+}
+.stats__trend {
+  color: #10A7C9;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: flex-end;
+}
+.stats__sub {
+  color: var(--muted);
+}
+
+/* ListaProductos */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.card {
+  background: var(--card);
+  border: 1px solid var(--stroke);
+  border-radius: 18px;
+  padding: 10px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.card__figure {
+  width: 100%;
+  aspect-ratio: 1 / 0.75;
+  display: grid;
+  place-items: center;
+}
+.card__figure img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+.card__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.card__title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.card__brand {
+  font-size: 13px;
+  color: var(--muted);
+}
+.card__risk {
+  height: 8px;
+  border-radius: 999px;
+  width: 70%;
+}
+.card__risk--bajo { background: #1DBE5E; }
+.card__risk--medio { background: #F6B21A; }
+.card__risk--alto { background: #E63946; }
+
+/* Encabezados de sección */
+h3 {
+  margin-top: 16px;
+  margin-bottom: 8px;
+  font-size: 18px;
+}
+
+/* Ajuste safe-area para móviles */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .homepage {
+    padding-bottom: calc(16px + env(safe-area-inset-bottom));
+  }
+}
+
+/* Normaliza el lienzo general */
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #F5F7FB;      /* igual que la app, así no se ven los laterales oscuros */
+  overflow-x: hidden;        /* evita cualquier desplazamiento lateral accidental */
+}
+
+/* Contenedor “teléfono” centrado y alto mínimo de viewport */
+.homepage {
+  min-height: 100svh;        /* usa el alto real del viewport en móviles */
+  width: 100%;
+  max-width: 430px;
+  margin: 0 auto;
+  position: relative;
+  background: #F5F7FB;       /* por si el body usa otro fondo en otro tema */
+}
+
+/* Footer fijo centrado al viewport y no al contenedor */
+.barra-footer {
+  position: fixed;
+  bottom: env(safe-area-inset-bottom, 0);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 430px;
+  z-index: 1000;
+}
+
+/* El nav del footer con fondo/blanco consistente */
+.barra-footer nav {
+  height: 64px;
+  background: #fff;
+  border-top: 1px solid #E5E7EB;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+}
+
+/* Deja espacio para que el footer no tape el contenido */
+.app, .homepage {
+  padding-bottom: max(84px, env(safe-area-inset-bottom));
+}
+
+/* (Opcional) Ajuste de grilla para no “salirse” en anchos pequeños */
+.grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(3, 1fr);
+}
+@media (max-width: 360px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Imágenes de cards sin “salto” de línea base */
+.card__figure img {
+  display: block;
+}
+/* === FIX franja blanca (sin cambiar fondos) === */
+
+/* Anula los height:100% que tenías en html, body y #root */
+html, body, #root {
+  height: auto;        /* o: height: initial; */
+}
+
+/* Hace que el contenedor cubra todo el alto visible del viewport */
+#root {
+  min-height: 100svh;  /* mejor que 100%/100vh en móviles modernos */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;  /* usa center si querés centrar vertical */
+}
+
+/* Ya lo tenés, pero por las dudas: evita “scroll” lateral que a veces muestra bordes */
+body {
+  overflow-x: hidden;
+}
+

@@ -75,20 +75,28 @@ const ResultPage = () => {
               <ListaProductoComponentes componentes={componentes} />
             </>
           ) : (
-            <div className="alternativa-recomendada">
-              <h3>Recomendación alternativa</h3>
-              <div className="alternativa-card">
-                <img
-                  src={producto.alternativa_img || "bagovit.jpeg"}
-                  alt="Producto alternativo"
-                  className="img-alternativa"
-                />
-                <div className="texto-alternativa">
-                  <p className="nombre-alternativa">
-                    {producto.recomendacion || "Autobronceante Bagovit"}
-                  </p>
-                  <span className="seguridad-alternativa">Seguridad: 97/100</span>
-                </div>
+            /* === Tarjeta alternativa estilo blanco con score a la derecha === */
+            <div className="alternativa-card-blanca">
+              <img
+                src={producto.alternativa_img || "bagovit.jpeg"}
+                alt="Producto alternativo"
+                className="img-alt-blanca"
+              />
+
+              <div className="alt-textos">
+                <h2 className="alt-nombre">
+                  {producto.recomendacion || "Autobronceante Bagovit"}
+                </h2>
+                <p className="alt-marca">
+                  {producto.marcaAlternativa || "Bagovit"}
+                </p>
+              </div>
+
+              <div className="alt-rating">
+                <span className="alt-num">
+                  {(producto.scoreAlternativa ?? 6.2).toFixed(1)}
+                </span>
+                <span className="alt-suf">/10</span>
               </div>
             </div>
           )}
@@ -101,4 +109,3 @@ const ResultPage = () => {
 };
 
 export default ResultPage;
-

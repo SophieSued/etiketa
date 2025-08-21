@@ -1,0 +1,46 @@
+.bienvenido-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #f5f7fb;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .bienvenido-page h1 {
+    font-size: 32px;
+    margin-bottom: 40px;
+    color: #0DB9D7;
+  }
+  
+  .bienvenido-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .btn {
+    display: block;
+    padding: 12px;
+    text-align: center;
+    border-radius: 8px;
+    font-size: 16px;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  
+  .btn-login {
+    background: #0DB9D7;
+    color: white;
+  }
+  
+  .btn-registro {
+    background: #ffffff;
+    color: #0DB9D7;
+    border: 2px solid #0DB9D7;
+  }
+  

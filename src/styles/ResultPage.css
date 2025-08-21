@@ -1,7 +1,11 @@
+:root {
+  --footer-h: 72px; /* altura real del footer */
+}
+
 .mobile-wrapper {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 100dvh;   /* antes 100vh */
   position: relative;
   overflow: hidden;
   width: 100%;
@@ -14,7 +18,7 @@
   display: flex;
   flex-direction: column;
   padding: 16px;
-  padding-bottom: 100px; 
+  padding-bottom: 0; /* antes 100px, lo sacamos para evitar doble espacio */
   box-sizing: border-box;
   background-color: transparent;
   color: black;
@@ -24,13 +28,19 @@
 .barra-footer {
   position: fixed;
   bottom: 0;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 100%;
   max-width: 430px; 
+  height: var(--footer-h);
   background-color: #111;
   z-index: 10;
   padding: 0.7rem 0;
   box-sizing: border-box;
+  padding-bottom: calc(0.7rem + env(safe-area-inset-bottom));
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .encabezado-producto {
@@ -77,34 +87,38 @@
 .boton-analisis,
 .boton-alternativa {
   flex: 1;
-  padding: 0.6rem;
+  padding: 0.6rem 1rem;
   font-weight: 700;
   font-size: 1rem;
   text-align: center;
-  border: 2px solid white;
-  border-radius: 999px; 
-  background: rgba(0, 172, 230, 0.4); 
-  color: white;
-  transition: background 0.2s ease;
+  border-radius: 999px;
+  border: 2px solid #00ACE6; /* azul borde */
+  background: #fff; /* fondo blanco */
+  color: #00ACE6; /* texto azul */
+  transition: all 0.2s ease;
 }
 
 .boton-analisis:hover,
 .boton-alternativa:hover {
-  background: rgba(0, 172, 230, 0.6);
+  background: rgba(0, 172, 230, 0.1);
   cursor: pointer;
 }
 
+/* Botón activo */
 .activo {
-  background: rgba(0, 172, 230, 1);
+  background: #00ACE6; /* fondo azul */
+  color: #fff; /* texto blanco */
+  border-color: #00ACE6; /* borde azul */
 }
 
+
 .listaproducto-componentes {
-  border: 2px solid white;
+  background-color: white;
+  border: 1.5px solid #eee;
   border-radius: 20px;
-  padding: 1rem;
+  padding: 1.2rem;
   margin-bottom: 1.5rem;
-  color: white;
-  background-color: rgba(0, 172, 230, 0.3);
+  color: black;
 }
 
 .listaproducto-componentes h3 {
@@ -112,7 +126,7 @@
   margin-bottom: 1rem;
   font-size: 1.4rem;
   font-weight: 600;
-  color: white;
+  color: black;
 }
 
 .listaproducto-componentes ul {
@@ -126,53 +140,38 @@
   justify-content: space-between;
   align-items: center;
   padding: 0.6rem 0;
-  font-size: 1rem;
-  color: white;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 1.1rem;
+  border-bottom: 1px solid #f0f0f0;
 }
 
-.etiqueta-riesgo {
+.nombre-componente {
+  flex: 1;
+  color: black;
+}
+
+.etiqueta-wrapper {
   display: flex;
   align-items: center;
+  background-color: white;
+  padding: 0.3rem 0.6rem;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  min-width: 110px;
+  justify-content: center;
   gap: 0.4rem;
-  font-size: 0.9rem;
-  color: white;
 }
 
-.punto-rojo,
-.punto-naranja,
-.punto-amarillo {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
+.color-box {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
 }
 
-.punto-rojo { background-color: red; }
-.punto-naranja { background-color: orange; }
-.punto-amarillo { background-color: yellow; }
-
-.boton-vermas {
-  width: 100%;
-  margin-top: 1rem;
-  text-align: center;
-}
-
-.boton-vermas button {
-  width: 100%;
-  padding: 0.8rem;
-  font-size: 1.1rem;
-  font-weight: bold;
-  background-color: rgba(0, 172, 230, 0.4);
-  border: 2px solid white;
-  color: white;
-  border-radius: 999px;
-  cursor: pointer;
-  transition: background 0.2s;
-}
 
 .boton-vermas button:hover {
-  background-color: rgba(0, 172, 230, 0.6);
+  background-color: #e6f7ff;
 }
+
 
 .info-clasificar {
   display: flex;
@@ -211,72 +210,77 @@
 }
 
 
-.alternativa-recomendada {
-  padding: 1rem;
-  margin-bottom: 2rem;
-  border-radius: 20px;
-  background-color: rgba(0, 172, 230, 0.3);
-  border: 2px solid white;
-  color: white;
-  text-align: center;
-}
-
-.alternativa-recomendada h3 {
-  font-size: 1.4rem;
-  margin-bottom: 1rem;
-  font-weight: 700;
-}
-
-.alternativa-card {
+.alternativa-card-blanca {
   display: flex;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
-  padding: 0.8rem;
+  justify-content: space-between;
   gap: 1rem;
-  border: 1px solid white;
+  padding: 14px 18px;
+  border-radius: 20px;
+  background: #fff;
+  border: 1px solid #E9EEF4;
 }
 
-.img-alternativa {
-  width: 80px;
-  height: 80px;
+.img-alt-blanca {
+  width: 74px;
+  height: 74px;
   object-fit: contain;
-  border-radius: 12px;
-  background-color: white;
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid #EEF2F7;
 }
 
-.texto-alternativa {
+.alt-textos {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
 }
 
-.nombre-alternativa {
-  font-weight: bold;
+.alt-nombre {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.2;
+  font-weight: 800;
+  color: #0F172A;
+}
+
+.alt-marca {
+  margin: 4px 0 0;
   font-size: 1rem;
-  color: white;
-  margin-bottom: 0.4rem;
+  color: #475569;
 }
 
-.seguridad-alternativa {
-  font-size: 0.9rem;
-  background-color: #4CAF50;
-  color: white;
-  padding: 0.3rem 0.7rem;
-  border-radius: 999px;
+.alt-rating {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
 }
+
+.alt-num {
+  font-size: 2.4rem;
+  line-height: 1;
+  font-weight: 800;
+  color: #F4B205;
+}
+
+.alt-suf {
+  font-size: 1.1rem;
+  color: #64748B;
+  font-weight: 600;
+  padding-bottom: 4px;
+}
+
 
 .grafico-componente {
   background-color: white;
   border-radius: 16px;
-  padding: 24px 32px;
+  padding: 1.2rem;
   margin: 16px auto;
-  max-width: 430px; /* o 440px, lo que te permita el diseño */
+  max-width: 430px;
   text-align: left;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   color: #222;
 }
-
 
 .grafico-componente h3 {
   font-size: 15px;
@@ -315,7 +319,7 @@
 .leyenda-colores {
   display: flex;
   justify-content: space-between;
-  flex-wrap: nowrap;   /* NO permitir que bajen de línea */
+  flex-wrap: nowrap;
   gap: 12px;
 }
 
@@ -359,5 +363,5 @@
 .contenido-scroll {
   flex: 1;
   overflow-y: auto;
-  padding-bottom: 120px; 
+  padding-bottom: calc(var(--footer-h) + env(safe-area-inset-bottom));
 }

@@ -2,10 +2,11 @@ html, body, #root {
   margin: 0;
   padding: 0;
   width: 100%;
-  height: 100%;
+  min-height: 100%;
+  background-color: #000000; /* fondo general negro */
+  overflow-x: hidden;
   display: flex;
-  justify-content: center;
-  background-color: #1e1e1e;
+  justify-content: center; /* centra el .mobile-wrapper */
 }
 
 :root {
@@ -20,7 +21,6 @@ html, body, #root {
   -moz-osx-font-smoothing: grayscale;
 }
 
-
 a {
   font-weight: 500;
   color: #646cff;
@@ -29,7 +29,6 @@ a {
 a:hover {
   color: #535bf2;
 }
-
 
 button {
   border-radius: 8px;
@@ -50,16 +49,17 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+/* 📱 El contenedor de tu “app” */
 .mobile-wrapper {
   width: 100%;
   max-width: 430px;
+  min-height: 100vh;
   margin: 0 auto;
   background-color: #ffffff;
   background-image: url('/fondo.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
