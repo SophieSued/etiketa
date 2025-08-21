@@ -21,53 +21,60 @@ html, body {
   margin: 0;
 }
 
-/* ========= Página centrada y con padding seguro ========= */
-.auth-page{
-  min-height: 100dvh;
-  display: grid;
-  place-items: center;
-  padding:
-    max(16px, env(safe-area-inset-top))
-    max(16px, env(safe-area-inset-right))
-    max(16px, env(safe-area-inset-bottom))
-    max(16px, env(safe-area-inset-left));
-  background:
-    radial-gradient(1200px 600px at -10% 10%, #ffffff 0%, #eef3f9 60%, #eaf1f8 100%),
-    linear-gradient(180deg, #f9fbff 0%, #f2f6fb 100%);
-  overflow-y: auto;
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 16px;
+
+  /* Fondo de la página */
+  background: url("/fondo.png") no-repeat center center fixed;
+  background-size: cover;
 }
 
+
+/* ========= FORMULARIO (compacto) ========= */
 .formulario {
   width: 100%;
-  max-width: 400px;
+  max-width: 360px;                 /* más angosto */
   margin-inline: auto;
-  margin-block: clamp(20px, 6vh, 40px);
-  padding: clamp(16px, 3vw, 24px);
-  border-radius: 22px;
+  margin-block: 16px;               /* menos margen vertical */
+  padding: 14px 16px;               /* menos padding interno */
+  border-radius: 18px;
   background: var(--c-card);
-  box-shadow: 0 12px 40px rgba(16,24,40,.08), inset 0 1px 0 rgba(255,255,255,.6);
+  box-shadow: 0 8px 24px rgba(16,24,40,.08), inset 0 1px 0 rgba(255,255,255,.6);
 
   display: grid;
   grid-template-columns: 1fr;
-  gap: clamp(10px, 2vw, 14px);
+  gap: 12px;                        /* menos espacio entre campos */
+  overflow: hidden;                 /* evita que algo “salte” fuera del card */
 }
 
 .formulario h2{
-  margin: 4px 0 8px;
-  font-size: clamp(20px, 2.6vw, 24px);
+  margin: 0 0 8px;
+  font-size: 20px;
   text-align: center;
   letter-spacing: .3px;
 }
 
-/* ========= Inputs antiguos (si todavía se usan en otras pantallas) ========= */
+/* Subtítulo dentro del card */
+.formulario .sub{
+  margin: 0 0 8px !important;
+  color: var(--c-muted);
+  line-height: 1.35;
+}
+
+/* ========= Inputs ========= */
 .formulario input{
   width: 100%;
   border: 0;
   outline: none;
   background: var(--c-input);
-  border-radius: 16px;
-  padding: 16px 18px;
-  font-size: 16px;
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-size: 15px;
   color: var(--c-text);
   box-shadow: inset 0 1px 0 rgba(255,255,255,.8), 0 1px 0 rgba(16,24,40,.02);
   transition: box-shadow .2s ease, background .2s ease, transform .05s ease;
@@ -75,16 +82,32 @@ html, body {
 .formulario input::placeholder{ color: var(--c-muted); }
 .formulario input:focus{
   background: #fff;
-  box-shadow: 0 0 0 3px rgba(17,181,229,.18), 0 8px 18px rgba(16,24,40,.06);
+  box-shadow: 0 0 0 3px rgba(17,181,229,.18), 0 6px 14px rgba(16,24,40,.06);
   transform: translateY(-1px);
+}
+
+/* ========= Fila doble: Nombre / Apellido ========= */
+.formulario--registro .split-2{
+  display: grid;
+  grid-template-columns: 1fr;       /* en mobile, apilados */
+  gap: 12px;                        /* aire entre los dos */
+  margin-bottom: 8px;               /* separación con el siguiente campo */
+}
+@media (min-width: 560px){
+  .formulario--registro .split-2{
+    grid-template-columns: 1fr 1fr; /* en desktop, lado a lado */
+    column-gap: 12px;               /* separación horizontal */
+    row-gap: 0;
+    margin-bottom: 10px;
+  }
 }
 
 /* ========= Botones seleccionables tipo input ========= */
 .botones-filtros{
   display: grid;
   grid-template-columns: 1fr;
-  gap: 16px;
-  margin: 8px 0 16px;
+  gap: 12px;
+  margin: 6px 0 12px;
 }
 
 .chip-btn{
@@ -95,73 +118,57 @@ html, body {
 
   background: var(--c-input);
   border: 1.5px solid #e5e7eb;
-  border-radius: 18px;
-  padding: 14px 18px;
+  border-radius: 12px;
+  padding: 10px 12px;
 
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   color: #9aa3ae;
   box-shadow: inset 0 1px 0 rgba(255,255,255,.85),
               0 1px 0 rgba(16,24,40,.02);
   transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
 }
-
 .chip-btn.is-active{
   background: #fff;
   border-color: var(--c-primary);
   color: var(--c-text);
-  box-shadow: 0 0 0 3px rgba(17,181,229,.18),
-              0 6px 16px rgba(16,24,40,.06);
+  box-shadow: 0 0 0 3px rgba(17,181,229,.18), 0 4px 12px rgba(16,24,40,.06);
 }
 
-/* ========= Botón principal (Crear cuenta) ========= */
-.submit-btn{
+/* ========= (Opcional) botón submit interno si alguna otra pantalla lo usa ========= */
+.formulario .submit-btn{
+  width: 100%;
   border: 0;
   cursor: pointer;
-  margin-top: 20px;
-  padding: 16px 22px;
-  font-size: clamp(18px, 2.2vw, 20px);
+  padding: 12px 16px;
+  font-size: 16px;
   font-weight: 800;
-  border-radius: 18px;
+  border-radius: 14px;
   color: #fff;
   background: var(--c-primary);
-  box-shadow: 0 10px 20px rgba(17,181,229,.35), inset 0 1px 0 rgba(255,255,255,.25);
+  box-shadow: 0 8px 18px rgba(17,181,229,.30), inset 0 1px 0 rgba(255,255,255,.25);
   transition: transform .06s ease, box-shadow .2s ease, filter .2s ease;
-  width: 100%;
 }
+.formulario .submit-btn:hover{
+  box-shadow: 0 12px 22px rgba(17,181,229,.38), inset 0 1px 0 rgba(255,255,255,.25);
+  transform: translateY(-1px);
+}
+.formulario .submit-btn:active{ transform: translateY(0); filter: saturate(.95); }
 
-.submit-btn:hover{
-  box-shadow: 0 14px 26px rgba(17,181,229,.42), inset 0 1px 0 rgba(255,255,255,.25);
-  transform: translateY(-1.5px);
-}
-.submit-btn:active{ transform: translateY(0); filter: saturate(.95); }
+/* Error inline */
+.formulario .error{ color: #e5484d; margin-top: -2px; }
 
-/* ========= Micro-ajustes móviles chicos ========= */
-@media (max-width: 360px){
-  .formulario{ border-radius: 22px; }
-  .formulario input{ padding: 14px 16px; }
-  .formulario button{ padding: 14px 18px; }
-  .chip-btn{ padding: 12px 16px; border-radius: 16px; }
-}
-
-.logo-container {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.logo {
-  max-width: 120px;
-  height: auto;
-}
+/* ========= Header del paso (logo + dots) ========= */
+.logo-container { text-align: center; margin-bottom: 14px; }
+.logo { max-width: 100px; height: auto; }
 
 .steps{
   display: flex;
   gap: 10px;
   align-items: center;
   justify-content: center;
-  margin: 10px 0 18px;
+  margin: 6px 0 12px;
 }
-
 .dot{
   width: 12px;
   height: 12px;
@@ -169,60 +176,77 @@ html, body {
   background: #d1d5db;
   box-shadow: 0 1px 0 rgba(16,24,40,.06) inset;
 }
-
-.dot.active{
-  background: var(--c-primary);
-}
+.dot.active{ background: var(--c-primary); }
 
 /* =========================
-   Compactación por pantallas BAJAS
+   Compactación extra en pantallas bajas
    ========================= */
-   @media (max-height: 740px){
-    .auth-page{
-      padding: 12px;                 /* menos padding del contenedor */
-    }
-  
-    .logo-container{ margin-bottom: 8px; }
-    .logo{ max-width: 84px; }        /* logo más chico */
-    .steps{ margin: 6px 0 12px; }     /* menos espacio para los dots */
-  
-    .formulario{
-      max-width: 380px;               /* un poco más angosto */
-      margin-block: 8px;              /* menos margen vertical */
-      padding: 14px;                  /* menos padding interno */
-      gap: 10px;                      /* menos separación entre campos */
-      border-radius: 18px;
-    }
-  
-    .formulario h2{
-      margin: 0 0 4px;
-      font-size: 20px;                /* título más compacto */
-    }
-  
-    .formulario p{ margin: 0 0 6px !important; }
-  
-    .formulario input{
-      padding: 12px 14px;             /* inputs más bajos */
-      font-size: 15px;
-      border-radius: 14px;
-    }
-  
-    .submit-btn,
-    .formulario button{
-      padding: 12px 16px;             /* botón más bajo */
-      font-size: 16px;
-      border-radius: 14px;
-    }
+@media (max-height: 740px){
+  .formulario{
+    max-width: 340px;
+    margin-block: 10px;
+    padding: 12px;
+    gap: 10px;
   }
-  
-  /* Ultra-compacto para alturas MUY chicas */
-  @media (max-height: 640px){
-    .logo{ max-width: 72px; }
-    .steps{ margin: 4px 0 10px; }
-    .formulario{ padding: 12px; gap: 8px; }
-    .formulario h2{ font-size: 19px; }
-    .formulario input{ padding: 10px 12px; font-size: 14.5px; }
-    .submit-btn,
-    .formulario button{ padding: 10px 14px; font-size: 15.5px; }
-  }
-  
+  .formulario h2{ font-size: 19px; margin: 0 0 6px; }
+  .formulario input{ padding: 9px 11px; font-size: 14.5px; border-radius: 11px; }
+  .chip-btn{ padding: 9px 11px; font-size: 14.5px; border-radius: 11px; }
+  .logo{ max-width: 90px; }
+  .steps{ margin: 4px 0 10px; }
+}
+@media (max-height: 640px){
+  .formulario{ max-width: 330px; padding: 10px; gap: 8px; }
+  .formulario h2{ font-size: 18px; margin: 0 0 6px; }
+  .formulario input{ padding: 8px 10px; font-size: 14px; border-radius: 10px; }
+  .chip-btn{ padding: 8px 10px; font-size: 14px; border-radius: 10px; }
+  .logo{ max-width: 84px; }
+}
+
+/* =========================================================
+   CONTENIDO EXTERNO AL CARD (botón Continuar + link login)
+   ========================================================= */
+.acciones-externas{
+  width: 100%;
+  max-width: 430px;                /* igual que el marco del mock */
+  margin: 12px auto 0;             /* pegado visualmente al card */
+  display: grid;
+  place-items: center;
+  gap: 10px;
+}
+
+.cta-externa{
+  border: 0;
+  cursor: pointer;
+  padding: 14px 22px;
+  font-size: 22px;
+  font-weight: 800;
+  border-radius: 18px;
+  color: #fff;
+  background: var(--c-primary);
+  box-shadow: 0 10px 20px rgba(17,181,229,.35), inset 0 1px 0 rgba(255,255,255,.25);
+  transition: transform .06s ease, box-shadow .2s ease, filter .2s ease;
+  width: min(320px, 82%);          /* ancho grande, centrado como el mock */
+}
+.cta-externa:hover{
+  box-shadow: 0 14px 26px rgba(17,181,229,.42), inset 0 1px 0 rgba(255,255,255,.25);
+  transform: translateY(-1px);
+}
+.cta-externa:active{ transform: translateY(0); filter: saturate(.95); }
+
+.login-externo{
+  margin: 0;
+  text-align: center;
+  color: var(--c-muted);
+  font-size: .95rem;
+}
+.login-externo a{
+  color: var(--c-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* Responsive: un poco menos alto en pantallas bajas */
+@media (max-height: 740px){
+  .acciones-externas{ gap: 8px; margin-top: 10px; }
+  .cta-externa{ padding: 12px 18px; font-size: 20px; }
+}

@@ -1,11 +1,13 @@
 // src/pages/FiltrosPage.jsx
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";  // 👈 import
 import StepDots from "../components/StepDots";
 import "../styles/Formularios.css";
 
 const FiltrosPage = () => {
   const opciones = ["Celiaquía", "Vegano/a", "Alergía", "Otra restricción"];
   const [seleccionados, setSeleccionados] = useState([]);
+  const navigate = useNavigate();  // 👈 hook de navegación
 
   const toggleSeleccion = (opcion) => {
     setSeleccionados((prev) =>
@@ -18,7 +20,9 @@ const FiltrosPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Filtros seleccionados:", seleccionados);
-    // acá después podés enviar al backend o navegar a home/dashboard
+
+    // 👇 redirige a /inicio
+    navigate("/inicio");
   };
 
   return (
@@ -72,4 +76,5 @@ const FiltrosPage = () => {
 };
 
 export default FiltrosPage;
+
 

@@ -17,32 +17,27 @@ const FormularioRegistro = ({ onRegistro }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setError("");
-
     if (password !== password2) {
       setError("Las contraseñas no coinciden.");
       return;
     }
-
     const datos = { nombre, apellido, email, password };
-    onRegistro?.(datos);         // << mantiene tu “conexión” como estaba
-    navigate("/filtros");        // << al continuar, va a FiltrosPage
+    onRegistro?.(datos);          // ❗ mantiene tu conexión
+    navigate("/filtros");
   };
 
   return (
     <div className="auth-page">
-      {/* Logo arriba */}
+      {/* Logo y pasos */}
       <div className="logo-container">
-        {/* Ajustá la ruta del src según tu archivo (ej: "/Logo chico (1).png" o "/logo-chico.png") */}
         <img src="/Logo chico (1).png" alt="Logo Etiketa" className="logo" />
       </div>
-
-      {/* Bolitas de pasos */}
       <StepDots />
 
-      {/* Formulario */}
-      <form className="formulario formulario--registro" onSubmit={handleSubmit}>
+      {/* Card del formulario */}
+      <form id="registroForm" className="formulario formulario--registro" onSubmit={handleSubmit}>
         <h2>Bienvenido!!</h2>
-        <p style={{ margin: 0, marginBottom: 4, color: "var(--c-muted)" }}>
+        <p className="sub">
           Ingresa tus datos para crear tu cuenta en <strong>Etiketa</strong>
         </p>
 
@@ -76,7 +71,7 @@ const FormularioRegistro = ({ onRegistro }) => {
           aria-label="Correo electrónico"
         />
 
-        {/* Contraseñas */}
+        {/* Passwords */}
         <input
           type="password"
           placeholder="Crear contraseña"
@@ -94,22 +89,20 @@ const FormularioRegistro = ({ onRegistro }) => {
           aria-label="Confirmar contraseña"
         />
 
-        {/* Error inline */}
-        {error && (
-          <small style={{ color: "#e5484d", marginTop: -4 }}>{error}</small>
-        )}
-
-        {/* CTA */}
-        <button type="submit">Continuar</button>
-
-        {/* Link a login */}
-        <p style={{ margin: 8, textAlign: "center", color: "var(--c-muted)" }}>
-          Ya tenes una cuenta? Presiona acá para {" "}
-          <a href="/login" style={{ color: "var(--c-primary)", fontWeight: 600 }}>
-            Iniciar sesión
-          </a>
-        </p>
+        {error && <small className="error">{error}</small>}
       </form>
+
+      {/* Botón + link FUERA del card */}
+      <div className="acciones-externas">
+        <button form="registroForm" type="submit" className="cta-externa">
+          Continuar
+        </button>
+
+        <p className="login-externo">
+          Ya tenes una cuenta? Presiona acá para hacer{" "}
+          <a href="/login">Iniciar sesión</a>
+        </p>
+      </div>
     </div>
   );
 };
