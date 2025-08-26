@@ -59,7 +59,7 @@ export default function ListaProductos({ tipo = "recientes", items, max }) {
     <div className="grid" data-section={tipo}>
       {state === "loading" && <p>Cargando…</p>}
       {state === "empty" && <p>No hay recientes aún.</p>}
-      {state === "error" && <p>No se pudo conectar al backend.</p>}
+      {state === "error" && <p></p>}
 
       {state === "ok" &&
         mostrar.map((p) => <ProductCard key={`${tipo}-${p.id}`} p={p} />)}

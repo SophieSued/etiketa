@@ -8,6 +8,7 @@ import PaginaRegistro from "./pages/PaginaRegistro";
 import FiltrosPage from "./pages/FiltrosPage";       
 import ScanPage from "./pages/ScanPage";
 import ResultPage from "./pages/ResultPage";
+import PantallaCargando from "./components/PantallaCargando";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/filtros" element={<FiltrosPage />} />
         <Route path="/scan" element={<ScanPage />} />
         <Route path="/resultado" element={<ResultPage />} />
+        <Route path="/cargando" element={<PantallaCargando />} />
       </Routes>
     </Router>
   );

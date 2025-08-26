@@ -1,16 +1,17 @@
 .pantalla-cargando {
-  height: calc(100vh - 80px); 
+  height: 100vh;                 /* ocupa toda la pantalla */
   display: flex;
+  flex-direction: column;        /* loader arriba, texto abajo */
   justify-content: center;
   align-items: center;
-  padding-bottom: 80px; 
+  gap: 16px;                     /* espacio entre loader y texto */
 }
 
 .loader {
-  width: 40px;
-  height: 40px;
-  border: 4px solid #fff;           
-  border-top: 4px solid transparent;
+  width: 60px;                   /* más grande */
+  height: 60px;
+  border: 6px solid #00BFFF;     /* color principal */
+  border-top: 6px solid transparent;
   border-radius: 50%;
   animation: spin 0.9s linear infinite;
 }
@@ -19,6 +20,12 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.pantalla-cargando p {
+  font-size: 20px;               /* texto más grande */
+  color: #13232f;                /* color de texto (oscuro) */
+  margin: 0;
 }
 
   

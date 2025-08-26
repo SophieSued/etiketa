@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import StepDots from "../components/StepDots";
 import "../styles/Formularios.css";
 
-const FormularioRegistro = ({ onRegistro }) => {
+const FormularioRegistro = () => {
   const [nombre, setNombre] = useState("");
   const [apellido, setApellido] = useState("");
   const [email, setEmail] = useState("");
@@ -16,31 +16,35 @@ const FormularioRegistro = ({ onRegistro }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setError("");
+
     if (password !== password2) {
       setError("Las contraseñas no coinciden.");
       return;
     }
-    const datos = { nombre, apellido, email, password };
-    onRegistro?.(datos);          
-    navigate("/filtros");
+
+    const registro = { nombre, apellido, email, password };
+
+    // Backup por si el usuario refresca en /filtros
+    localStorage.setItem("registroPendiente", JSON.stringify(registro));
+
+    // Pasar datos al siguiente paso (Filtros)
+    navigate("/filtros", { state: { registro } });
   };
 
   return (
     <div className="auth-page">
-      {}
       <div className="logo-container">
         <img src="/Logo chico (1).png" alt="Logo Etiketa" className="logo" />
       </div>
+
       <StepDots />
 
-      {}
       <form id="registroForm" className="formulario formulario--registro" onSubmit={handleSubmit}>
-        <h2>Bienvenido!!</h2>
+        <h2>¡Bienvenido!</h2>
         <p className="sub">
           Ingresa tus datos para crear tu cuenta en <strong>Etiketa</strong>
         </p>
 
-        {}
         <div className="split-2">
           <input
             type="text"
@@ -49,6 +53,7 @@ const FormularioRegistro = ({ onRegistro }) => {
             onChange={(e) => setNombre(e.target.value)}
             required
             aria-label="Nombre"
+            autoComplete="given-name"
           />
           <input
             type="text"
@@ -57,10 +62,10 @@ const FormularioRegistro = ({ onRegistro }) => {
             onChange={(e) => setApellido(e.target.value)}
             required
             aria-label="Apellido"
+            autoComplete="family-name"
           />
         </div>
 
-        {}
         <input
           type="email"
           placeholder="Correo electrónico"
@@ -68,9 +73,9 @@ const FormularioRegistro = ({ onRegistro }) => {
           onChange={(e) => setEmail(e.target.value)}
           required
           aria-label="Correo electrónico"
+          autoComplete="email"
         />
 
-        {}
         <input
           type="password"
           placeholder="Crear contraseña"
@@ -78,6 +83,8 @@ const FormularioRegistro = ({ onRegistro }) => {
           onChange={(e) => setPassword(e.target.value)}
           required
           aria-label="Crear contraseña"
+          autoComplete="new-password"
+          minLength={8}
         />
         <input
           type="password"
@@ -86,19 +93,20 @@ const FormularioRegistro = ({ onRegistro }) => {
           onChange={(e) => setPassword2(e.target.value)}
           required
           aria-label="Confirmar contraseña"
+          autoComplete="new-password"
+          minLength={8}
         />
 
         {error && <small className="error">{error}</small>}
       </form>
 
-      {}
       <div className="acciones-externas">
         <button form="registroForm" type="submit" className="cta-externa">
           Continuar
         </button>
 
         <p className="login-externo">
-          Ya tenes una cuenta? Presiona acá para hacer{" "}
+          ¿Ya tenés una cuenta? Presioná acá para{" "}
           <a href="/login">Iniciar sesión</a>
         </p>
       </div>
@@ -107,3 +115,8 @@ const FormularioRegistro = ({ onRegistro }) => {
 };
 
 export default FormularioRegistro;
+
+
+
+
+

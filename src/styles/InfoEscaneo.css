@@ -6,8 +6,10 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  padding: 8px 0;
+  padding: 0 0 8px;   /* le saco el padding-top */
+  margin-top: -8px;   /* lo subo un poquito */
 }
+
 
 .bloque-info {
   background: #fff;
