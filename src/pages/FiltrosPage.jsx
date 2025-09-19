@@ -3,42 +3,39 @@ import { useNavigate, useLocation } from "react-router-dom";
 import StepDots from "../components/StepDots";
 import "../styles/Formularios.css";
 
-// Backend en Render (SIN barra final) y endpoint
-const API_BASE = "https://etiketa-backend.onrender.com";
+
+const API_BASE = (import.meta.env.VITE_API_BASE ?? "https://etiketa-backend.onrender.com").replace(/\/+$/, "");
 const ENDPOINT_CREAR_USUARIO = "/usuarios/crear-usuario";
 
 const FiltrosPage = () => {
-  const opciones = useMemo(
-    () => ["Celiaquía", "Vegano/a", "Alergía", "Otra restricción"],
-    []
-  );
+  
+  const opciones = useMemo(() => ["Celiaquía", "Vegano/a"], []);
 
   const [seleccionados, setSeleccionados] = useState([]);
+  const [alergiasTxt, setAlergiasTxt] = useState("");
+  const [otraRestriccion, setOtraRestriccion] = useState(""); 
   const [enviando, setEnviando] = useState(false);
   const [error, setError] = useState("");
 
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Recuperar datos del paso anterior, con fallback a localStorage
+  
   const registro =
-    location.state?.registro ||
+    (location.state && location.state.registro) ||
     JSON.parse(localStorage.getItem("registroPendiente") || "null");
 
+  
   useEffect(() => {
-    if (location.state?.registro) {
-      localStorage.setItem(
-        "registroPendiente",
-        JSON.stringify(location.state.registro)
-      );
+    const reg = location.state && location.state.registro;
+    if (reg) {
+      localStorage.setItem("registroPendiente", JSON.stringify(reg));
     }
   }, [location.state]);
 
   const toggleSeleccion = (opcion) => {
     setSeleccionados((prev) =>
-      prev.includes(opcion)
-        ? prev.filter((o) => o !== opcion)
-        : [...prev, opcion]
+      prev.includes(opcion) ? prev.filter((o) => o !== opcion) : [...prev, opcion]
     );
   };
 
@@ -50,21 +47,50 @@ const FiltrosPage = () => {
       navigate("/registro");
       return;
     }
+    if (enviando) return;
 
-    const payload = { ...registro, filtros: seleccionados };
+  
+    const vegano = seleccionados.includes("Vegano/a");
+    const celiaquia = seleccionados.includes("Celiaquía");
+
+   
+    const payload = {
+      nombre: registro.nombre,
+      apellido: registro.apellido,
+      email: registro.email,
+      password: registro.password, 
+      edad: registro.edad ?? null,
+      vegano,
+      celiaquia,
+      enfermedades: (otraRestriccion || "").trim(), 
+      alergias: (alergiasTxt || "").trim(),
+    };
 
     try {
       setEnviando(true);
 
       const res = await fetch(`${API_BASE}${ENDPOINT_CREAR_USUARIO}`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        // credentials: "include", // descomentar si tu backend usa cookies/sesión y CORS lo permite
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        
         body: JSON.stringify(payload),
       });
 
       if (!res.ok) {
-        const msg = await res.text().catch(() => "Error de registro");
+        let msg = `Error ${res.status}`;
+        try {
+          const ct = res.headers.get("content-type") || "";
+          if (ct.includes("application/json")) {
+            const j = await res.json();
+            msg = j?.message || j?.error || msg;
+          } else {
+            const t = await res.text();
+            msg = t || msg;
+          }
+        } catch {}
         throw new Error(msg);
       }
 
@@ -78,6 +104,9 @@ const FiltrosPage = () => {
     }
   };
 
+ 
+  if (!registro) return null;
+
   return (
     <div className="auth-page">
       <div className="logo-container">
@@ -86,14 +115,18 @@ const FiltrosPage = () => {
 
       <StepDots />
 
-      <form className="formulario formulario--registro" onSubmit={handleSubmit}>
-        <h2 style={{ textAlign: "left" }}>Personaliza tu experiencia</h2>
+      {
+
+      }
+      <form className="formulario formulario--filtros" onSubmit={handleSubmit}>
+        <h2 style={{ textAlign: "left" }}>Personalizá tu experiencia</h2>
         <p style={{ marginTop: 0, color: "var(--c-muted)", textAlign: "left" }}>
-          Seleccioná las restricciones que tenés
-          <br />
-          para recibir recomendaciones más precisas.
+          Seleccioná si sos celíaca/o o vegana/o y contanos alergias u otras restricciones.
         </p>
 
+        {
+
+        }
         <div className="botones-filtros">
           {opciones.map((opcion) => {
             const activo = seleccionados.includes(opcion);
@@ -111,6 +144,34 @@ const FiltrosPage = () => {
           })}
         </div>
 
+        {
+
+        }
+        <label className="flex flex-col" style={{ marginTop: 12 }}>
+          <span>Alergias</span>
+          <input
+            type="text"
+            placeholder="Ej: maní, lácteos…"
+            value={alergiasTxt}
+            onChange={(e) => setAlergiasTxt(e.target.value)}
+            maxLength={255}
+          />
+        </label>
+
+        {
+
+        }
+        <label className="flex flex-col" style={{ marginTop: 12 }}>
+          <span>Otra restricción (dermatológica)</span>
+          <input
+            type="text"
+            placeholder="Ej: dermatitis, rosácea…"
+            value={otraRestriccion}
+            onChange={(e) => setOtraRestriccion(e.target.value)}
+            maxLength={255}
+          />
+        </label>
+
         {error && <small className="error">{error}</small>}
 
         <button type="submit" className="submit-btn" disabled={enviando}>
@@ -122,9 +183,4 @@ const FiltrosPage = () => {
 };
 
 export default FiltrosPage;
-
-
-
-
-
 

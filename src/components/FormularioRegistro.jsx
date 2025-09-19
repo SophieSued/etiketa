@@ -24,10 +24,10 @@ const FormularioRegistro = () => {
 
     const registro = { nombre, apellido, email, password };
 
-    // Backup por si el usuario refresca en /filtros
+   
     localStorage.setItem("registroPendiente", JSON.stringify(registro));
 
-    // Pasar datos al siguiente paso (Filtros)
+   
     navigate("/filtros", { state: { registro } });
   };
 
