@@ -364,3 +364,39 @@
   overflow-y: auto;
   padding-bottom: calc(var(--footer-h) + env(safe-area-inset-bottom));
 }
+
+/* header con score a la derecha */
+.grafico-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  margin-bottom:12px;
+}
+
+/* bloque del puntaje */
+.score-top{
+  display:flex;
+  align-items:baseline;
+  gap:6px;
+}
+
+/* número grande (6.2) */
+.score-value{
+  font-weight:800;
+  font-size:32px;   /* ajustá si lo querés más grande/chico */
+  line-height:1;
+}
+
+/* /10 en gris */
+.score-suffix{
+  font-weight:700;
+  font-size:18px;
+  color:#6b7280; /* gris */
+  line-height:1;
+}
+
+/* colores por estado del número */
+.score--seguro   { color:#009961; } /* verde */
+.score--bajo     { color:#f3dc00; } /* amarillo (como tu bajo) */
+.score--moderado { color:#e8801d; } /* naranja */
+.score--alto     { color:#e64444; } /* rojo */
