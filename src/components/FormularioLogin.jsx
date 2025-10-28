@@ -1,13 +1,59 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../AuthContext"; 
 import "../styles/Formularios.css";
 
-const FormularioLogin = ({ onLogin }) => {
+export default function FormularioLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [msg, setMsg] = useState("");      
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const { login } = useAuth();
 
-  const handleSubmit = (e) => {
+  const API_BASE = (import.meta.env.VITE_API_BASE ?? "https://etiketa-backend.onrender.com").replace(/\/+$/, "");
+  const LOGIN_URL = import.meta.env.VITE_AUTH_LOGIN_URL || `${API_BASE}/usuarios/login`;
+
+  async function parseMaybeJson(res) {
+    const ct = res.headers.get("content-type") || "";
+    if (ct.includes("application/json")) {
+      try { return await res.json(); } catch { return { raw: "(JSON inválido)" }; }
+    }
+    return { raw: await res.text() };
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onLogin?.({ email, password });
+    setMsg("");
+    setLoading(true);
+
+    try {
+      setMsg(`→ POST ${LOGIN_URL}`);
+      const res = await fetch(LOGIN_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await parseMaybeJson(res);
+      setMsg((m) => m + `\n← Status: ${res.status}\nRespuesta: ${JSON.stringify(data).slice(0,200)}`);
+
+      if (!res.ok) {
+        throw new Error(data?.message || data?.error || data?.raw || `HTTP ${res.status}`);
+      }
+
+      const token = data?.token || data?.accessToken;
+      if (!token) throw new Error("El servidor no devolvió token.");
+
+      // Guardar sesión
+      login({ token, email });
+
+      setLoading(false);
+      navigate("/inicio");
+    } catch (err) {
+      setLoading(false);
+      setMsg((m) => m + `\nError: ${err.message || "Fallo desconocido"}`);
+    }
   };
 
   return (
@@ -21,6 +67,7 @@ const FormularioLogin = ({ onLogin }) => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
+          autoComplete="email"
         />
 
         <input
@@ -29,14 +76,20 @@ const FormularioLogin = ({ onLogin }) => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
+          autoComplete="current-password"
         />
 
-        <button type="submit" className="submit-btn">Entrar</button>
+        {msg && (
+          <pre style={{ background:'#111', color:'#0f0', padding:8, borderRadius:8, whiteSpace:'pre-wrap' }}>
+            {msg}
+          </pre>
+        )}
+
+        <button type="submit" className="submit-btn" disabled={loading}>
+          {loading ? "Entrando..." : "Entrar"}
+        </button>
       </form>
     </div>
   );
-};
-
-export default FormularioLogin;
-
+}
 

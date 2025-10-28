@@ -8,24 +8,41 @@ import ListaProductoComponentes from "../components/ListaProductoComponentes";
 import InfoClasificar from "../components/InfoClasificar";
 import BarraFooter from "../components/BarraFooter";
 
-// URLs (sin barra final)
+
 const API_BASE = (import.meta.env.VITE_API_BASE ?? "https://etiketa-backend.onrender.com").replace(/\/+$/, "");
 const GUARDAR_URL =
   import.meta.env.VITE_HISTORIAL_GUARDAR_URL || `${API_BASE}/historial/guardar-escaneo`;
 
-const normalizarProducto = (prod) => ({
-  id: prod?.id ?? prod?.code ?? prod?.ean ?? Date.now(),
-  nombre: prod?.product_name ?? prod?.nombre ?? "Producto",
-  marca: prod?.brands ?? prod?.marca ?? "—",
-  imagen: prod?.image_url ?? prod?.img ?? prod?.imagen ?? "/img/nivea.png",
-  riesgo: String(prod?.riesgo ?? "medio").toLowerCase(),
-});
+
+const normalizarProducto = (prod) => {
+  if (!prod || typeof prod !== "object") return null;
+
+  const id =
+    prod?.id ??
+    prod?._id ??
+    prod?.code ??
+    prod?.codigo_barra ??
+    prod?.ean ??
+    prod?.gtin ??
+    prod?.barcode ??
+    null;
+
+  if (id == null) return null;
+
+  return {
+    id, 
+    nombre: prod?.product_name ?? prod?.nombre ?? "Producto",
+    marca: prod?.brands ?? prod?.marca ?? "—",
+    imagen: prod?.image_url ?? prod?.img ?? prod?.imagen ?? "/img/nivea.png",
+    riesgo: String(prod?.riesgo ?? "medio").toLowerCase(),
+  };
+};
 
 const ResultPage = () => {
   const [seccionActiva, setSeccionActiva] = useState("analisis");
   const [producto, setProducto] = useState(null);
   const [componentes, setComponentes] = useState([]);
-  const savedOnceRef = useRef(false); // evita doble POST
+  const savedOnceRef = useRef(false); 
 
   useEffect(() => {
     const productoGuardado = localStorage.getItem("productoDetectado");
@@ -36,7 +53,6 @@ const ResultPage = () => {
       if (prod.ingredients_text) {
         const texto = prod.ingredients_text;
         const lista = texto.split(",").map((nombre) => nombre.trim());
-
         const conRiesgo = lista.map((nombre) => {
           let riesgo = "Desconocido";
           let color = "gris";
@@ -50,17 +66,21 @@ const ResultPage = () => {
           }
           return { nombre, riesgo, color };
         });
-
         setComponentes(conRiesgo);
       }
     }
   }, []);
 
-  // Guardado automático en historial (una sola vez)
+ 
   useEffect(() => {
     if (!producto || savedOnceRef.current) return;
 
     const p = normalizarProducto(producto);
+    if (!p) {
+      console.warn("[historial] Producto sin ID válido. Keys:", Object.keys(producto || {}));
+      return;
+    }
+
     const ultimoId = localStorage.getItem("ultimoEscaneoId");
     if (ultimoId && String(ultimoId) === String(p.id)) {
       savedOnceRef.current = true;
@@ -70,16 +90,20 @@ const ResultPage = () => {
     savedOnceRef.current = true;
 
     const email = localStorage.getItem("usuarioEmail") || null;
-    const token = localStorage.getItem("token"); // si algún día lo usan
+    const token =
+      localStorage.getItem("accessToken") ||
+      localStorage.getItem("token") ||
+      null;
 
     const headers = {
       "Content-Type": "application/json",
       Accept: "application/json",
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
     };
-    if (token) headers.Authorization = `Bearer ${token}`;
 
-    // Tomamos el score que venga de tu backend (ajusta el orden si tu key real es otra)
+
     const scoreProducto =
+      producto?.calificacion ??
       producto?.score ??
       producto?.puntaje ??
       producto?.seguridadScore ??
@@ -87,31 +111,60 @@ const ResultPage = () => {
 
     (async () => {
       try {
+        console.log("[historial] POST", GUARDAR_URL, { productoId: p.id, nombre: p.nombre });
+
+        
+        const idParaEnviar =
+          typeof p.id === "string" && /^\d+$/.test(p.id) ? Number(p.id) : p.id;
+
         const res = await fetch(GUARDAR_URL, {
           method: "POST",
           headers,
           body: JSON.stringify({
-            producto: { ...p, puntaje: scoreProducto }, // ← opcional pero útil
-            email,                                       // opcional
+            
+            productoId: idParaEnviar,
+            nombre: p.nombre,
+            marca: p.marca,
+            imagen: p.imagen,
+            riesgo: p.riesgo,
+            ...(scoreProducto != null ? { puntaje: scoreProducto } : {}),
+            email,
             fecha: new Date().toISOString(),
           }),
         });
 
+        const ct = res.headers.get("content-type") || "";
+        const payload = ct.includes("application/json")
+          ? await res.json().catch(() => null)
+          : await res.text().catch(() => "");
+
         if (!res.ok) {
-          const t = await res.text().catch(() => "");
-          throw new Error(`HTTP ${res.status} ${t}`);
+          throw new Error(
+            `HTTP ${res.status} ${
+              typeof payload === "string" ? payload : JSON.stringify(payload)
+            }`
+          );
         }
 
-        await res.json().catch(() => null);
+        console.log("[historial] Guardado OK:", payload);
 
+        
         localStorage.setItem(
           "ultimoEscaneo",
-          JSON.stringify({ ...p, email, fecha: new Date().toISOString(), puntaje: scoreProducto })
+          JSON.stringify({
+            id: p.id,
+            nombre: p.nombre,
+            marca: p.marca,
+            img: p.imagen,
+            riesgo: p.riesgo,
+            email,
+            fecha: new Date().toISOString(),
+            ...(scoreProducto != null ? { puntaje: scoreProducto } : {}),
+          })
         );
         localStorage.setItem("ultimoEscaneoId", String(p.id));
-        console.log("Guardado OK en historial.");
       } catch (e) {
-        console.warn("No se pudo guardar:", e?.message || e);
+        console.warn("[historial] No se pudo guardar:", e?.message || e);
       }
     })();
   }, [producto]);
@@ -120,12 +173,12 @@ const ResultPage = () => {
     return <p style={{ textAlign: "center", padding: "2rem" }}>Cargando producto...</p>;
   }
 
-  // Score que le vamos a pasar al gráfico (0–10 ideal; el componente ya normaliza 0–1 o 0–100)
   const scoreParaGrafico =
+    producto.calificacion ??
     producto.score ??
     producto.puntaje ??
     producto.seguridadScore ??
-    producto.scoreAlternativa ?? // fallback visual si aún no llega el principal
+    producto.scoreAlternativa ??
     null;
 
   return (
@@ -151,9 +204,7 @@ const ResultPage = () => {
 
           {seccionActiva === "analisis" ? (
             <>
-              {/* ⬇️ Ahora el gráfico usa el valor del backend */}
-              <GraficoComponente score={Number(producto?.calificacion)} />
-
+              <GraficoComponente score={Number(scoreParaGrafico)} />
               <InfoClasificar />
               <ListaProductoComponentes componentes={componentes} />
             </>
@@ -171,7 +222,9 @@ const ResultPage = () => {
                 <p className="alt-marca">{producto.marcaAlternativa || "Bagovit"}</p>
               </div>
               <div className="alt-rating">
-                <span className="alt-num">{(producto.scoreAlternativa ?? 6.2).toFixed(1)}</span>
+                <span className="alt-num">
+                  {(producto.scoreAlternativa ?? 6.2).toFixed(1)}
+                </span>
                 <span className="alt-suf">/10</span>
               </div>
             </div>
@@ -185,6 +238,3 @@ const ResultPage = () => {
 };
 
 export default ResultPage;
-
-
-
