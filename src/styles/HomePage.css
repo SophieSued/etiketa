@@ -39,6 +39,7 @@ html, body, #root {
   font-weight: 700;
   letter-spacing: .5px;
 }
+
 .icon-btn {
   width: 36px;
   height: 36px;
@@ -49,7 +50,14 @@ html, body, #root {
   place-items: center;
   color: #08A6C1;
   cursor: pointer;
+  padding: 0;             
 }
+
+.icon-btn > * {
+  display: block;
+  margin: 0;
+}
+
 
 .home__search input {
   width: 100%;
