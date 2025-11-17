@@ -69,9 +69,9 @@ export default function FormularioLogin() {
 
       }
       <form className="formulario formulario--login" onSubmit={handleSubmit}>
-        <h2>Bienvenido!!</h2>
+        <h2>Bienvenido!</h2>
         <p className="sub">
-          Ingresa tus datos para continuar utilizando Etiketa
+          Ingresa tus datos para continuar 
         </p>
 
         <input
