@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../styles/Info.css"; // ajustá la ruta si tu carpeta se llama distinto
+import "../styles/Info.css"; 
 
 export default function PageInformativa() {
   const [stepAbierto, setStepAbierto] = useState(null);
@@ -10,35 +10,39 @@ export default function PageInformativa() {
 
   const steps = [
     {
-      titulo: "Escanea.",
+      titulo: "Escaneá.",
       texto:
         "Escaneá el código de barras del producto para analizar automáticamente su composición.",
     },
     {
-      titulo: "Consulta.",
+      titulo: "Consultá.",
       texto:
-        "Revisá el detalle de ingredientes y advertencias sobre posibles disruptores endócrinos.",
+        "Accedé a información clara y confiable sobre cada ingrediente. Presentamos datos basados en fuentes científicas para que entiendas, de manera sencilla, qué estás usando en tu piel o en tu cuerpo.",
     },
     {
-      titulo: "Compara.",
+      titulo: "Compará.",
       texto:
-        "Compará productos similares y elegí la opción con menor riesgo según el puntaje.",
+        "Poné productos lado a lado y evaluá cuál es la mejor opción. La comparación es directa, visual y te permite identificar la alternativa más segura en segundos..",
     },
     {
       titulo: "Elegí.",
       texto:
-        "Tomá decisiones informadas y elegí los productos que mejor se adapten a tus criterios.",
+        "Tomá decisiones informadas, sin cambiar tu rutina. La app te propone opciones más saludables según tus preferencias y te acompaña a construir hábitos de consumo más conscientes.",
     },
   ];
 
   return (
     <div className="info-page">
-      {/* LOGO ARRIBA */}
+      {
+
+      }
       <div className="info-logo">
-        <img src="/Logo_chico.png" alt="Etiketa" />
+        <img src="/Logo chico (1).png" alt="Etiketa" />
       </div>
 
-      {/* CARD 1400 SUSTANCIAS */}
+      {
+
+      }
       <section className="info-card info-card--big">
         <p className="info-1400">1400</p>
         <p className="info-1400-sub">
@@ -50,7 +54,9 @@ export default function PageInformativa() {
         </p>
       </section>
 
-      {/* CARD ¿SABÍAS QUE…? */}
+      {
+
+      }
       <section className="info-card">
         <p className="info-title-icon">💡 ¿Sabías que...?</p>
         <p className="info-text">
@@ -59,7 +65,9 @@ export default function PageInformativa() {
         </p>
       </section>
 
-      {/* PASOS 1–4 */}
+      {
+        
+      }
       <section className="info-steps">
         {steps.map((step, index) => (
           <div className="info-step" key={index}>
@@ -86,9 +94,11 @@ export default function PageInformativa() {
         ))}
       </section>
 
-      {/* BLOQUE ¿QUÉ ES UN DISRUPTOR…? */}
+      {
+
+      }
       <section className="info-card">
-        <p className="info-title-icon">💡 ¿Qué es un disruptor endócrino?</p>
+        <p className="info-title-icon">¿Qué es un disruptor endócrino?</p>
         <p className="info-text-strong">OMS (2002)</p>
         <p className="info-text">
           “Sustancia o mezcla exógena que altera la función del sistema
@@ -97,10 +107,12 @@ export default function PageInformativa() {
         </p>
       </section>
 
-      {/* BLOQUE BARRITAS */}
+      {
+
+      }
       <section className="info-card">
         <p className="info-title-icon">
-          📈 Presencia de disruptores endócrinos en cosméticos
+          Presencia de disruptores endócrinos en cosméticos
         </p>
 
         {[
@@ -123,9 +135,11 @@ export default function PageInformativa() {
         ))}
       </section>
 
-      {/* BLOQUE PARÁMETRO DE CLASIFICACIÓN */}
+      {
+
+      }
       <section className="info-card info-card--last">
-        <p className="info-title-icon">📘 Parámetro de clasificación</p>
+        <p className="info-title-icon">Parámetro de clasificación</p>
         <p className="info-text">
           La puntuación de la composición de los productos se basa en los
           parámetros EWG. En base a la integración de este sistema de
