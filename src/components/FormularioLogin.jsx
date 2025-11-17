@@ -45,7 +45,7 @@ export default function FormularioLogin() {
       const token = data?.token || data?.accessToken;
       if (!token) throw new Error("El servidor no devolvió token.");
 
-      // Guardar sesión
+      
       login({ token, email });
 
       setLoading(false);
@@ -58,8 +58,21 @@ export default function FormularioLogin() {
 
   return (
     <div className="auth-page auth-page--login">
-      <form className="formulario formulario--registro" onSubmit={handleSubmit}>
-        <h2>Iniciar sesión</h2>
+      {
+
+      }
+      <div className="logo-container">
+        <img src="public/Logo chico (1).png" alt="Etiketa" className="logo" />
+      </div>
+
+      {
+
+      }
+      <form className="formulario formulario--login" onSubmit={handleSubmit}>
+        <h2>Bienvenido!!</h2>
+        <p className="sub">
+          Ingresa tus datos para continuar utilizando Etiketa
+        </p>
 
         <input
           type="email"
@@ -86,10 +99,17 @@ export default function FormularioLogin() {
         )}
 
         <button type="submit" className="submit-btn" disabled={loading}>
-          {loading ? "Entrando..." : "Entrar"}
+          {loading ? "Entrando..." : "Iniciar sesión"}
         </button>
       </form>
+
+      {
+
+      }
+      <p className="login-externo">
+        No tenes una cuenta aún?{" "}
+        <a href="/registro">Presiona acá para Registrarte</a>
+      </p>
     </div>
   );
 }
-

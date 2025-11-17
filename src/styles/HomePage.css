@@ -146,54 +146,86 @@ html, body, #root {
   color: var(--muted);
 }
 
+/* ====== GRILLA Y TARJETAS (BASE) ====== */
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
   gap: 12px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
 }
+@media (max-width: 360px) {
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* === CARD CORRECTO (base para todo) === */
 .card {
   background: var(--card);
   border: 1px solid var(--stroke);
-  border-radius: 18px;
-  padding: 10px;
+  border-radius: 20px;
+  padding: 12px;
   box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  justify-content: space-between;
+  align-items: stretch;
+  overflow: hidden;
+  height: 190px;               /* alto fijo: más “cuadrado” pero cabe texto */
 }
+
+/* Contenedor de la imagen */
 .card__figure {
   width: 100%;
-  aspect-ratio: 1 / 0.75;
-  display: grid;
-  place-items: center;
+  height: 110px;               /* control de alto de imagen */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #F4F7FA;
 }
+
+/* Imagen dentro del contenedor: siempre a escala */
 .card__figure img {
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
 }
+
+/* Bloque de texto */
 .card__text {
   display: flex;
   flex-direction: column;
   gap: 2px;
+  margin-top: 8px;
 }
+
+/* Título: 2 líneas máximo */
 .card__title {
   font-size: 14px;
   font-weight: 600;
   color: #111827;
   line-height: 1.2;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Marca en una línea */
+.card__brand {
+  font-size: 12px;
+  color: var(--muted);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.card__brand {
-  font-size: 13px;
-  color: var(--muted);
-}
+
+/* Barra de riesgo */
 .card__risk {
-  height: 8px;
+  margin-top: auto;
+  height: 6px;
   border-radius: 999px;
-  width: 70%;
+  background: #E5E7EB;
 }
 .card__risk--bajo { background: #1DBE5E; }
 .card__risk--medio { background: #F6B21A; }
@@ -217,17 +249,17 @@ html, body, #root {
 
 body {
   margin: 0;
-  background: #F5F7FB;      
-  overflow-x: hidden;        
+  background: #F5F7FB;
+  overflow-x: hidden;
 }
 
 .homepage {
-  min-height: 100svh;      
+  min-height: 100svh;
   width: 100%;
   max-width: 430px;
   margin: 0 auto;
   position: relative;
-  background: #F5F7FB;       
+  background: #F5F7FB;
 }
 
 .barra-footer {
@@ -253,31 +285,53 @@ body {
   padding-bottom: max(84px, env(safe-area-inset-bottom));
 }
 
-.grid {
-  display: grid;
-  gap: 12px;
-  grid-template-columns: repeat(3, 1fr);
-}
-@media (max-width: 360px) {
-  .grid { grid-template-columns: repeat(2, 1fr); }
-}
-
-.card__figure img {
-  display: block;
-}
-
 html, body, #root {
-  height: auto;      
+  height: auto;
 }
 
 #root {
-  min-height: 100svh;  
+  min-height: 100svh;
   display: flex;
   justify-content: center;
-  align-items: flex-start;  
+  align-items: flex-start;
 }
 
 body {
   overflow-x: hidden;
 }
 
+/* ====== RECENTES / FAVORITOS: 3 POR FILA ====== */
+.section.cards-compact .product-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+/* 2 por fila en pantallas muy chicas */
+@media (max-width: 400px) {
+  .section.cards-compact .product-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.section.cards-compact .card {
+  height: 165px !important;
+}
+
+.section.cards-compact .card__figure {
+  height: 95px !important;
+}
+
+.section.cards-compact .card__title {
+  -webkit-line-clamp: 2 !important;  
+}
+
+/* --- Ajuste final: un poco más cuadradas, texto siempre visible --- */
+.section.cards-compact .card {
+  height: auto !important;        /* sin altura fija que corte texto */
+  min-height: 170px !important;   /* da sensación de card cuadrada */
+}
+
+.section.cards-compact .card__figure {
+  height: 95px !important;        /* imagen un poquito más chica */
+}
