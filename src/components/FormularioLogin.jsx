@@ -62,7 +62,7 @@ export default function FormularioLogin() {
 
       }
       <div className="logo-container">
-        <img src="public/Logo chico (1).png" alt="Etiketa" className="logo" />
+        <img src="/Logo chico (1).png" alt="Etiketa" className="logo" />
       </div>
 
       {
